@@ -1,0 +1,21 @@
+<!-- Toolbar -->
+<mat-toolbar [ngStyle]="styles.topBar.toolBar">
+  <button (click)="drawer.toggle()" mat-icon-button [ngStyle]="styles.topBar.btnMenu">
+    <img [ngStyle]="styles.topBar.iconMenu" src="./../assets/icons/menu.svg" />
+  </button>
+  <span [ngStyle]="styles.topBar.titleToolBar">SHOPPING LIST</span>
+  <!-- <span class="example-spacer"></span> -->
+</mat-toolbar>
+
+<!-- SideNav -->
+<mat-drawer-container [ngStyle]="styles.sideNav.sideNav" [hasBackdrop]="false">
+  <mat-drawer [ngStyle]="styles.sideNav.drawer" #drawer mode="side">
+    <!-- <button mat-icon-button>
+        <h4>My List</h4>
+    </button> -->
+  </mat-drawer>
+  <mat-drawer-content [ngStyle]="styles.sideNav.drawerContent">
+    <!-- Content -->
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
