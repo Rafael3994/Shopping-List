@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Segoe_UI';
+}
+
+@font-face {
+  font-family: 'Segoe_UI';
+  src: url('./assets/fonts/Segoe_UI/Segoe_ui_historic.ttf');
+}

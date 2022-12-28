@@ -1,0 +1,133 @@
+// Style button options from sideBar
+.optionsBtn {
+  border: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5em;
+  max-height: 5em;
+  cursor: pointer;
+  background-color: white;
+}
+
+.optionsBtn:hover {
+  background-color: #dfd7e4;
+}
+
+// Line separator in sideBar
+.err,
+.err2,
+.err3,
+.err4 {
+  display: inline-block;
+  position: relative;
+}
+
+.err:after,
+.err:before {
+  content: '';
+  width: 3.6em;
+  z-index: 2;
+  border-bottom: 1px solid #707070;
+  position: absolute;
+  font-size: 2em;
+  display: block;
+  height: 4px;
+  top: -45%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+
+.err2:after,
+.err2:before {
+  content: '';
+  width: 3.6em;
+  z-index: 2;
+  border-bottom: 1px solid #707070;
+  position: absolute;
+  font-size: 2em;
+  display: block;
+  height: 4px;
+  top: -45%;
+  left: 59%;
+  transform: translate(-50%, -100%);
+}
+
+.err3:after,
+.err3:before {
+  content: '';
+  width: 4.6em;
+  z-index: 2;
+  border-bottom: 1px solid #707070;
+  position: absolute;
+  font-size: 2em;
+  display: block;
+  height: 4px;
+  top: -45%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+
+.err4:after,
+.err4:before {
+  content: '';
+  width: 4.6em;
+  z-index: 2;
+  border-bottom: 1px solid #707070;
+  position: absolute;
+  font-size: 2em;
+  display: block;
+  height: 4px;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+
+// Slide Toggle: theme mode
+:host
+  ::ng-deep
+  .mat-slide-toggle.mat-checked:not(.mat-disabled)
+  .mat-slide-toggle-bar {
+  background-color: #5d3979a2;
+}
+
+:host
+  ::ng-deep
+  .mat-slide-toggle.mat-checked:not(.mat-disabled)
+  .mat-slide-toggle-thumb {
+  background-color: #5d3979;
+}
+
+// Select Lenguages
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label,
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  font-size: smaller;
+  color: #5d3979e3;
+  font-family: 'Segoe_UI';
+  letter-spacing: 2px;
+}
+
+:host ::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: #5d3979e3;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+::ng-deep .mat-primary .mat-option-text {
+  color: #5d3979e3;
+  font-weight: 500;
+  font-family: 'Segoe_UI';
+  letter-spacing: 2px;
+}
+
+::ng-deep .mat-select-value-text {
+  color: #5d3979e3;
+  text-align: center;
+  margin-left: 35%;
+  font-weight: 600;
+  font-family: 'Segoe_UI';
+  letter-spacing: 2px;
+}
