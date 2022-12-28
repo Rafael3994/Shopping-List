@@ -11,12 +11,8 @@ import { AngularMaterialModule } from './modules/angular-material/angular-materi
 // Import components
 import { BaseComponent } from './components/base/base.component';
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    BaseComponent,
-  ],
+  declarations: [AppComponent, BaseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,4 +22,4 @@ import { BaseComponent } from './components/base/base.component';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
