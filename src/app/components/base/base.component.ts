@@ -6,13 +6,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./base.component.scss'],
 })
 export class BaseComponent implements OnInit {
-  lenguages = [
-    { lenguage: 'Spain', flag: './../assets/banderaEspanya.png' },
-    { lenguage: 'English', flag: './../assets/banderaEspanya.png' },
-    { lenguage: 'Russian', flag: './../assets/banderaEspanya.png' },
-  ];
-
+  
   constructor() {}
+
+  // lenguages = [
+  //   {
+  //     Spain:
+  //       { lenguage: 'Spain', flag: './../assets/espanya_flag.png' },
+  //   },
+  //   {
+  //     English:
+  //       { lenguage: 'English', flag: './../assets/england_flag.png' },
+  //   },
+  //   {
+  //     Russian:
+  //       { lenguage: 'Russian', flag: './../assets/russian_flag.png' },
+  //   }
+  // ];
+  lenguages = [
+    { lenguage: 'Spain', flag: './../assets/espanya_flag.png' },
+    { lenguage: 'English', flag: './../assets/england_flag.png' },
+    { lenguage: 'Russian', flag: './../assets/russian_flag.png' },
+  ];
+  lenghtLenguage = 0
+
+  changeLenguage(value: any) {
+    console.log(value);
+    this.lenguages.map((len, index) => {
+      if(len.lenguage === value) {
+        console.log('value', index);
+        this.lenghtLenguage = index;
+        return
+      }
+    })
+  }
 
   ngOnInit(): void {}
 
@@ -50,8 +77,9 @@ export class BaseComponent implements OnInit {
     },
     sideNav: {
       sideNav: {
-        width: '100%',
+        maxWidth: '100%',
         height: '88%',
+        overflowX: 'hidden'
       },
       drawerContent: {
         padding: '12px',

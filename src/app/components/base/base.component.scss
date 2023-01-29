@@ -131,3 +131,19 @@
   font-family: 'Segoe_UI';
   letter-spacing: 2px;
 }
+
+::ng-deep .mat-select-arrow-wrapper {
+  visibility: hidden;
+}
+
+::ng-deep .mat-form-field-flex {
+  padding-right: 0;
+}
+
+::ng-deep .mat-drawer {
+  overflow-x: hidden;
+}
+
+::ng-deep .mat-form-field-wrapper{
+  margin-bottom: -1.25em;
+}

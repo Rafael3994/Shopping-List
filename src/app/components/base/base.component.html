@@ -1,9 +1,6 @@
 <!-- Toolbar -->
 <mat-toolbar [ngStyle]="styles.topBar.toolBar">
-  <button
-    (click)="drawer.toggle()"
-    mat-icon-button
-    [ngStyle]="styles.topBar.btnMenu">
+  <button (click)="drawer.toggle()" mat-icon-button [ngStyle]="styles.topBar.btnMenu">
     <img [ngStyle]="styles.topBar.iconMenu" src="./../assets/icons/menu.svg" />
   </button>
   <span [ngStyle]="styles.topBar.titleToolBar">SHOPPING LIST</span>
@@ -11,17 +8,9 @@
 
 <!-- SideNav -->
 <mat-drawer-container [ngStyle]="styles.sideNav.sideNav" [hasBackdrop]="true">
-  <mat-drawer
-    [ngStyle]="styles.sideNav.drawer"
-    #sidenav
-    #drawer
-    mode="side"
-    opened="true">
+  <mat-drawer [ngStyle]="styles.sideNav.drawer" #sidenav #drawer mode="side" opened="true">
     <!-- My list -->
-    <button
-      [ngClass]="'optionsBtn'"
-      [ngStyle]="{ marginTop: '4.5em' }"
-      mat-button>
+    <button [ngClass]="'optionsBtn'" [ngStyle]="{ marginTop: '4.5em' }" mat-button>
       <h4 [ngStyle]="styles.sideNav.textItemsBtn">My List</h4>
     </button>
     <!-- Products -->
@@ -32,60 +21,46 @@
     </button>
     <!-- Options -->
     <cdk-accordion class="example-accordion">
-      <cdk-accordion-item #accordionItem="cdkAccordionItem">
-        <button
-          [ngClass]="'optionsBtn'"
-          mat-button
-          (click)="accordionItem.toggle()">
-          <h4 [ngClass]="'err2'" [ngStyle]="styles.sideNav.textItemsBtn2">
-            Options
-          </h4>
-          <img
-            [ngStyle]="styles.sideNav.iconExpanded"
-            src="./../assets/icons/expanded_more.svg" />
-        </button>
-        <!-- Option theme mode -->
-        <button
-          [ngClass]="'optionsBtn'"
-          mat-button
-          (click)="modeToggle.toggle()">
-          <h4 [ngClass]="'err3'" [ngStyle]="styles.sideNav.textOptionsBtn">
-            {{ modeToggle.checked ? 'Dark Mode' : 'Light Mode' }}
-            <span>
-              <mat-slide-toggle
-                #modeToggle
-                (click)="modeToggle.toggle()"
-                [ngStyle]="{ marginLeft: '0.4em' }"
-                [checked]="'false'">
-              </mat-slide-toggle>
-            </span>
-          </h4>
-        </button>
-        <!-- Option select lenguage -->
-        <mat-form-field [ngClass]="'err4'" appearance="fill">
-          <div
-            [ngStyle]="{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }">
-            <img
-              [ngStyle]="styles.sideNav.flag"
-              src="./../assets/banderaEspanya.png" />
-            <mat-select [value]="lenguages[0].lenguage">
-              <mat-option
-                *ngFor="let lenguage of lenguages"
-                [value]="lenguage.lenguage">
-                <div [ngStyle]="{ display: 'flex', alignItems: 'center' }">
-                  <img
-                    [ngStyle]="styles.sideNav.flagOption"
-                    src="./../assets/banderaEspanya.png" />
-                  {{ lenguage.lenguage }}
+      <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button" tabindex="0">
+        <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+          <button [ngClass]="'optionsBtn'" mat-button>
+            <h4 [ngClass]="'err2'" [ngStyle]="styles.sideNav.textItemsBtn2">
+              Options
+            </h4>
+            <img [ngStyle]="styles.sideNav.iconExpanded" src="./../assets/icons/expanded_more.svg" />
+          </button>
+        </div>
+        <div class="example-accordion-item-body" role="region" [style.display]="accordionItem.expanded ? '' : 'none'">
+               <!-- Option theme mode -->
+               <button [ngClass]="'optionsBtn'" mat-button (click)="modeToggle.toggle()">
+                <h4 [ngClass]="'err3'" [ngStyle]="styles.sideNav.textOptionsBtn">
+                  {{ modeToggle.checked ? 'Dark Mode' : 'Light Mode' }}
+                  <span>
+                    <mat-slide-toggle #modeToggle (click)="modeToggle.toggle()" [ngStyle]="{ marginLeft: '0.4em' }"
+                      [checked]="'false'">
+                    </mat-slide-toggle>
+                  </span>
+                </h4>
+              </button>
+              <!-- Option select lenguage -->
+              <mat-form-field [ngClass]="'err4'" appearance="fill">
+                <div [ngStyle]="{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }">
+                  <img [ngStyle]="styles.sideNav.flag" [src]="lenguages[lenghtLenguage].flag" />
+                  <mat-select [value]="lenguages[lenghtLenguage].lenguage" (selectionChange)="changeLenguage($event.value)">
+                    <mat-option *ngFor="let lenguage of lenguages" [value]="lenguage.lenguage">
+                      <div [ngStyle]="{ display: 'flex', alignItems: 'center' }">
+                        <img [ngStyle]="styles.sideNav.flagOption" [src]="lenguage.flag" />
+                        {{ lenguage.lenguage }}
+                      </div>
+                    </mat-option>
+                  </mat-select>
                 </div>
-              </mat-option>
-            </mat-select>
-          </div>
-        </mat-form-field>
+              </mat-form-field>
+        </div>
       </cdk-accordion-item>
     </cdk-accordion>
   </mat-drawer>
