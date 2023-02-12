@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-base',
@@ -6,23 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./base.component.scss'],
 })
 export class BaseComponent implements OnInit {
-  
-  constructor() {}
+width: { [klass: string]: any; }|null|undefined;
+  constructor(private router: Router) {
+    
+  }
 
-  // lenguages = [
-  //   {
-  //     Spain:
-  //       { lenguage: 'Spain', flag: './../assets/espanya_flag.png' },
-  //   },
-  //   {
-  //     English:
-  //       { lenguage: 'English', flag: './../assets/england_flag.png' },
-  //   },
-  //   {
-  //     Russian:
-  //       { lenguage: 'Russian', flag: './../assets/russian_flag.png' },
-  //   }
-  // ];
+  navigateTo(to: string) {
+    this.router.navigateByUrl(`/${to}`);
+  };
+
   lenguages = [
     { lenguage: 'Spain', flag: './../assets/espanya_flag.png' },
     { lenguage: 'English', flag: './../assets/england_flag.png' },
