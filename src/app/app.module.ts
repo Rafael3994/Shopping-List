@@ -10,6 +10,7 @@ import { AngularMaterialModule } from './modules/angular-material/angular-materi
 
 // Import components
 import { BaseComponent } from './components/base/base.component';
+import { MyListModule } from './modules/my-list/my-list.module';
 
 @NgModule({
   declarations: [AppComponent, BaseComponent],
@@ -18,6 +19,7 @@ import { BaseComponent } from './components/base/base.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    MyListModule
   ],
   providers: [],
   bootstrap: [AppComponent],

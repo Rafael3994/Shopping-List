@@ -10,11 +10,13 @@
 <mat-drawer-container [ngStyle]="styles.sideNav.sideNav" [hasBackdrop]="true">
   <mat-drawer [ngStyle]="styles.sideNav.drawer" #sidenav #drawer mode="side" opened="true">
     <!-- My list -->
-    <button [ngClass]="'optionsBtn'" [ngStyle]="{ marginTop: '4.5em' }" mat-button>
+    <button [ngClass]="'optionsBtn'" (click)="navigateTo('my-list')" 
+      [ngStyle]="{ marginTop: '4.5em' }" mat-button
+    >
       <h4 [ngStyle]="styles.sideNav.textItemsBtn">My List</h4>
     </button>
     <!-- Products -->
-    <button [ngClass]="'optionsBtn'" mat-button>
+    <button [ngClass]="'optionsBtn'" mat-button (click)="navigateTo('products')">
       <h4 [ngClass]="'err'" [ngStyle]="styles.sideNav.textItemsBtn">
         Products
       </h4>
@@ -43,7 +45,7 @@
                 </h4>
               </button>
               <!-- Option select lenguage -->
-              <mat-form-field [ngClass]="'err4'" appearance="fill">
+              <mat-form-field [ngClass]="'err4'" [ngStyle]="{width: '100%'}" appearance="fill">
                 <div [ngStyle]="{
                     display: 'flex',
                     alignItems: 'center',
