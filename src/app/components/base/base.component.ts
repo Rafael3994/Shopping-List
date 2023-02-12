@@ -81,7 +81,7 @@ width: { [klass: string]: any; }|null|undefined;
         alignItems: 'flex-start',
       },
       drawer: {
-        width: '15%',
+        minWidth: '13em',
         border: '0',
       },
       textItemsBtn: {
