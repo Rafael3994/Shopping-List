@@ -8,7 +8,7 @@
 
 <!-- SideNav -->
 <mat-drawer-container [ngStyle]="styles.sideNav.sideNav" [hasBackdrop]="true">
-  <mat-drawer [ngStyle]="styles.sideNav.drawer" #sidenav #drawer mode="side" opened="true">
+  <mat-drawer [ngStyle]="styles.sideNav.drawer" #sidenav #drawer mode="side" opened="false">
     <!-- My list -->
     <button [ngClass]="'optionsBtn'" (click)="navigateTo('my-list')" 
       [ngStyle]="{ marginTop: '4.5em' }" mat-button

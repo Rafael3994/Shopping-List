@@ -1,5 +1,6 @@
 export interface ProductsDTO {
     isChecked: boolean,
+    delete: string,
     name: String,
     category: String,
     brand: String, 

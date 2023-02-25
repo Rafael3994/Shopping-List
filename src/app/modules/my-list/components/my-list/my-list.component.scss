@@ -1,7 +1,12 @@
-
 // TABLE
 table {
     width: 100%;
+    box-shadow: none;
+    background-color: '#fafafa';
+  }
+
+  .mat-table {
+    background-color: '#fafafa';
   }
   
   .mat-mdc-form-field {
@@ -10,11 +15,8 @@ table {
   }
   
   td, th {
-    width: 25%;
+    width: 13vw;
   }
-
-
-
 
 // CHECK BOX
   .example-h2 {
@@ -27,7 +29,50 @@ table {
     align-items: center;
     height: 60px;
   }
-  
-  .example-margin {
-    margin: 0 10px;
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: #707070 !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: #707070 !important;
+}
+
+::ng-deep .mat-checkbox-ripple .mat-ripple-element {
+  background-color: #707070 !important;
+}
+
+// LYRICS
+.lyrics {
+  font-family: 'Segoe_UI';
+  letter-spacing: 2px;
+  align-items: center;
+  justify-content: center;
+  color: #707070;
+}
+
+.lyricsGetItem {
+  font-family: 'Segoe_UI';
+  letter-spacing: 2px;
+  align-items: center;
+  justify-content: center;
+  color: #A2A2A2;
+
+}
+
+// GET ITEM
+
+
+  .getItem {
+    // background-color: #111;
+    text-decoration: line-through;
+    // text-decoration-thickness: 2px;
+    text-decoration-color: #A2A2A2;
+    // content: " ";
+    // position: absolute;
+    // top: (initial - 50px);
+    // // left: 0;
+    // border-bottom: 1px solid #111;
+    // width: 5%;
   }
+
