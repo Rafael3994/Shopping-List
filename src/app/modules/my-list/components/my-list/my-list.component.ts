@@ -10,10 +10,10 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./my-list.component.scss']
 })
 
-export class MyListComponent implements AfterViewInit {
+export class MyListComponent {
   displayedColumns: string[] = ['check', 'name', 'category', 'brand', 'price', 'units', 'delete'];
   dataSource: MatTableDataSource<ProductsDTO>;
-  checked = false;
+  isDeleteSelect = true;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -170,10 +170,16 @@ export class MyListComponent implements AfterViewInit {
     this.dataSource = new MatTableDataSource(products);
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  showModal(e: Event, isChecked: boolean) {
+    if(isChecked) return;
+    document.getElementById('container')?.addEventListener('focus', (e) => e.preventDefault());
+    this.isDeleteSelect = !this.isDeleteSelect;
   }
+
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

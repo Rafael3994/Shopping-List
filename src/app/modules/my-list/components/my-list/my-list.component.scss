@@ -51,18 +51,7 @@ table {
   color: #707070;
 }
 
-.lyricsGetItem {
-  font-family: 'Segoe_UI';
-  letter-spacing: 2px;
-  align-items: center;
-  justify-content: center;
-  color: #A2A2A2;
-
-}
-
 // GET ITEM
-
-
   .getItem {
     // background-color: #111;
     text-decoration: line-through;
@@ -75,4 +64,30 @@ table {
     // border-bottom: 1px solid #111;
     // width: 5%;
   }
+
+  .lyricsGetItem {
+    font-family: 'Segoe_UI';
+    letter-spacing: 2px;
+    align-items: center;
+    justify-content: center;
+    color: #A2A2A2;
+  }
+
+// POP UP
+.popUp {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 30vw;
+  height: 35vh;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px #707070 solid;
+  color: #707070;
+  letter-spacing: 2px;
+}
 

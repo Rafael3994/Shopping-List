@@ -1,9 +1,9 @@
 <!-- Content -->
 <div [style]="{ width: '99.9vw', height: '80.9vh' }">
   <!-- Title -->
-  <h1 [style]="{ marginLeft: '3em'}" [ngClass]="'lyrics'">My List</h1>
+  <h1 [style]="{ marginLeft: '3em', pointerEvents: 'none'}" [ngClass]="'lyrics'">My List</h1>
   <!-- Container -->
-  <div [style]="{display: 'flex', flexDirection: 'column', alignItems: 'center'}">
+  <div [id]="'container'"  [style]="{display: 'flex', flexDirection: 'column', alignItems: 'center'}">
     <!-- Searchs options -->
     <div [style]="{display: 'flex', marginBottom: '3em', marginTop: '1em'}">
       <mat-form-field>
@@ -29,37 +29,45 @@
         <ng-container matColumnDef="name">
           <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header
             [style]="{backgroundColor: '#fafafa', fontSize: '1.2em'}"> Name </th>
-            <td  [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
-              <span [ngClass]="['lyrics']">{{row.name}}</span>
-            </td>
+          <td [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
+           {{row.name}}
+          </td>
         </ng-container>
 
         <!-- Category Column -->
         <ng-container matColumnDef="category">
           <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header
             [style]="{backgroundColor: '#fafafa', fontSize: '1.2em'}"> Category </th>
-          <td [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row"> {{row.category}} </td>
+          <td [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
+            {{row.category}} 
+          </td>
         </ng-container>
 
         <!-- Brand Column -->
         <ng-container matColumnDef="brand">
           <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header
             [style]="{backgroundColor: '#fafafa', fontSize: '1.2em'}"> Brand </th>
-          <td [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row"> {{row.brand}} </td>
+          <td [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
+            {{row.brand}} 
+          </td>
         </ng-container>
 
         <!-- Price Column -->
         <ng-container matColumnDef="price">
           <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header
             [style]="{backgroundColor: '#fafafa', fontSize: '1.2em'}"> Price </th>
-          <td [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row"> {{row.price}} </td>
+          <td [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
+            {{row.price}} 
+          </td>
         </ng-container>
 
         <!-- Units Column -->
         <ng-container matColumnDef="units">
           <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header
             [style]="{backgroundColor: '#fafafa', fontSize: '1.2em'}"> Unit/s </th>
-          <td [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row"> {{row.units}} </td>
+          <td [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
+            {{row.units}} 
+          </td>
         </ng-container>
 
         <!-- Delete Column -->
@@ -67,7 +75,9 @@
           <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef
             [style]="{backgroundColor: '#fafafa', fontSize: '1.2em'}"></th>
           <td mat-cell *matCellDef="let row" class="status">
-            <mat-icon [ngStyle]="row.isChecked ? {color: '#A2A2A2'} : {color: '#707070'}">{{row.delete}}</mat-icon>
+            <mat-icon (click)="showModal($event, row.isChecked)" [ngStyle]="row.isChecked ? {color: '#A2A2A2'} : {color: '#707070', cursor: 'pointer'}">
+              {{row.delete}}
+            </mat-icon>
           </td>
 
         </ng-container>
@@ -80,6 +90,16 @@
           <td class="mat-cell" colspan="6">No data matching the filter</td>
         </tr>
       </table>
+    </div>
+    <!-- POP UP -->
+      <div [style]="isDeleteSelect ? 'display: flex' : 'display: none'" [ngClass]="'popUp'">
+        <div [style]="'margin: 0 1em'">
+        <h3>Are you sure you want to remove this item from your list?</h3>
+        <div [style]="'marginTop: 1.5em'">
+          <button>YES</button>
+          <button>NO</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
