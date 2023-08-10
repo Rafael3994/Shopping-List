@@ -13,13 +13,15 @@ import { MatTableDataSource } from '@angular/material/table';
 export class MyListComponent {
   displayedColumns: string[] = ['check', 'name', 'category', 'brand', 'price', 'units', 'delete'];
   dataSource: MatTableDataSource<ProductsDTO>;
-  isDeleteSelect = true;
+  products: ProductsDTO[];
+  isDeleteSelect: boolean = false;
+  indexProduct: number | null = null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor() {
-    const products: ProductsDTO[] = [
+    this.products = [
       {
         isChecked: false,
         delete: 'delete',
@@ -167,19 +169,28 @@ export class MyListComponent {
     ]
 
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(products);
+    this.dataSource = new MatTableDataSource(this.products);
   }
 
-  showModal(e: Event, isChecked: boolean) {
+  showModal(e: Event, isChecked: boolean, index: number) {
     if(isChecked) return;
+    this.indexProduct = index;
     document.getElementById('container')?.addEventListener('focus', (e) => e.preventDefault());
     this.isDeleteSelect = !this.isDeleteSelect;
   }
 
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  //   this.dataSource.sort = this.sort;
-  // }
+  deleteProduct() {
+    if (this.indexProduct !== null) {
+      this.products.splice(this.indexProduct, 1);
+      this.dataSource = new MatTableDataSource(this.products);
+      this.closeModal();
+    }
+  }
+
+  closeModal() {
+    this.indexProduct = null;
+    this.isDeleteSelect = false;
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -190,8 +201,5 @@ export class MyListComponent {
     }
   }
 
-  styles = {
-
-
-  }
+  styles = {}
 }
