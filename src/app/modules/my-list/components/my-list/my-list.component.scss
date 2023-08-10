@@ -1,34 +1,35 @@
 // TABLE
 table {
-    width: 100%;
-    box-shadow: none;
-    background-color: '#fafafa';
-  }
+  width: 100%;
+  box-shadow: none;
+  background-color: '#fafafa';
+}
 
-  .mat-table {
-    background-color: '#fafafa';
-  }
-  
-  .mat-mdc-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-  
-  td, th {
-    width: 13vw;
-  }
+.mat-table {
+  background-color: '#fafafa';
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 13vw;
+}
 
 // CHECK BOX
-  .example-h2 {
-    margin: 10px;
-  }
-  
-  .example-section {
-    display: flex;
-    align-content: center;
-    align-items: center;
-    height: 60px;
-  }
+.example-h2 {
+  margin: 10px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
 
 .mat-checkbox-checked.mat-accent .mat-checkbox-background {
   background-color: #707070 !important;
@@ -52,34 +53,26 @@ table {
 }
 
 // GET ITEM
-  .getItem {
-    // background-color: #111;
-    text-decoration: line-through;
-    // text-decoration-thickness: 2px;
-    text-decoration-color: #A2A2A2;
-    // content: " ";
-    // position: absolute;
-    // top: (initial - 50px);
-    // // left: 0;
-    // border-bottom: 1px solid #111;
-    // width: 5%;
-  }
+.getItem {
+  text-decoration: line-through;
+  text-decoration-color: #A2A2A2;
+}
 
-  .lyricsGetItem {
-    font-family: 'Segoe_UI';
-    letter-spacing: 2px;
-    align-items: center;
-    justify-content: center;
-    color: #A2A2A2;
-  }
+.lyricsGetItem {
+  font-family: 'Segoe_UI';
+  letter-spacing: 2px;
+  align-items: center;
+  justify-content: center;
+  color: #A2A2A2;
+}
 
 // POP UP
 .popUp {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 30vw;
-  height: 35vh;
+  width: 28rem;
+  height: 14rem;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
   background-color: white;
@@ -89,5 +82,22 @@ table {
   border: 1px #707070 solid;
   color: #707070;
   letter-spacing: 2px;
+}
+
+.button-popUp {
+  height: 2.5rem;
+  width: 6rem;
+  background: content-box;
+  text-align: center;
+  border: 1px #707070 solid;
+  color: #707070;
+  letter-spacing: 2px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.button-popUp:hover {
+  background-color: rgb(236, 235, 235);
+  font-weight: bold;
 }
 

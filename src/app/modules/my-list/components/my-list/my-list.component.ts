@@ -27,7 +27,7 @@ export class MyListComponent {
         delete: 'delete',
         name: 'Queso en lonchas',
         category: 'Lactio',
-        brand: 'Hacendado',
+        brand: 'Bosque verde',
         price: 4.49,
         units: 2,
         formatSize: '',
@@ -173,9 +173,10 @@ export class MyListComponent {
   }
 
   showModal(e: Event, isChecked: boolean, index: number) {
+    e.stopPropagation();
     if(isChecked) return;
     this.indexProduct = index;
-    document.getElementById('container')?.addEventListener('focus', (e) => e.preventDefault());
+    // document.getElementById('container')?.addEventListener('focus', (e) => e.preventDefault());
     this.isDeleteSelect = !this.isDeleteSelect;
   }
 

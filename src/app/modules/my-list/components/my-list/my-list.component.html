@@ -1,5 +1,5 @@
 <!-- Content -->
-<div [style]="{ width: '99.9vw', height: '80.9vh' }">
+<div [style]="{ width: '99.9vw', height: '80.9vh' }" (click)="closeModal()">
   <!-- Title -->
   <h1 [style]="{ marginLeft: '3em', pointerEvents: 'none'}" [ngClass]="'lyrics'">My List</h1>
   <!-- Container -->
@@ -93,14 +93,13 @@
       </table>
     </div>
     <!-- POP UP -->
-    <!-- <div [style]="isDeleteSelect ? 'display: flex' : 'display: none'" [ngClass]="'popUp'"> -->
     <div *ngIf="isDeleteSelect" [ngClass]="'popUp'">
       <div [style]="'margin: 0 1em'">
         <h3 (click)="closeModal()" [ngStyle]="{'display': 'flex', 'justifyContent': 'end', 'cursor': 'pointer'}">X</h3>
         <h3>Are you sure you want to remove this item from your list?</h3>
-        <div [style]="'marginTop: 1.5em'">
-          <button (click)="deleteProduct()">YES</button>
-          <button (click)="closeModal()">NO</button>
+        <div [style]="{marginTop: '1.8rem', display: 'flex', justifyContent: 'space-evenly'}">
+          <button [className]="'button-popUp'" (click)="deleteProduct()">YES</button>
+          <button [className]="'button-popUp'" (click)="closeModal()">NO</button>
         </div>
       </div>
     </div>
