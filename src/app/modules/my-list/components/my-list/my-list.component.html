@@ -5,15 +5,16 @@
   <!-- Container -->
   <div [id]="'container'" [style]="{display: 'flex', flexDirection: 'column', alignItems: 'center'}">
     <!-- Searchs options -->
-    <div [style]="{display: 'flex', marginBottom: '3em', marginTop: '1em'}">
+    <div [style]="{display: 'flex', width: '80%',  marginBottom: '1.7rem', marginTop: '1rem'}">
       <mat-form-field>
-        <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">Search</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+        <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">Search Product</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
       </mat-form-field>
-      <mat-form-field>
-        <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">Search</mat-label>
+      <!-- TODO: Mas adelante -->
+      <!-- <mat-form-field>
+        <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">Change Market</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-      </mat-form-field>
+      </mat-form-field> -->
     </div>
     <div [style]="{display: 'flex', justifyContent: 'center', marginBottom: '5em'}">
       <table mat-table [dataSource]="dataSource" matSort>
