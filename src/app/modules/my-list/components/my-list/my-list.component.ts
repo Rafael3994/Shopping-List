@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Categories, ProductsDTO } from 'src/app/modules/products/products.DTO';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -18,7 +18,11 @@ export class MyListComponent {
   indexProduct: number | null = null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('empTbSort') empTbSort = new MatSort();
+
+  ngAfterViewInit() {    
+    this.dataSource.sort = this.empTbSort;
+  }
 
   constructor() {
     this.products = [
