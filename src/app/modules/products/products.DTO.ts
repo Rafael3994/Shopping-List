@@ -4,11 +4,11 @@ export interface ProductsDTO {
     name: String,
     category: Categories,
     brand: String, 
-    price: Number, 
+    price: number, 
     formatSize: String,
     marked: String,
     image: String,
-    units?: Number,
+    units?: number,
 };
 
 export enum Categories {

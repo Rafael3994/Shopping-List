@@ -19,7 +19,7 @@
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
       </mat-form-field> -->
     </div>
-    <div [style]="{display: 'flex', justifyContent: 'center', marginBottom: '5em'}">
+    <div [style]="{display: 'flex', justifyContent: 'center', marginBottom: '0.5em'}">
       <table mat-table [dataSource]="dataSource" matSort #empTbSort="matSort" [style]="{ backgroundColor: '#fafafa'}">
         <!-- Check Column -->
         <ng-container matColumnDef="check">
@@ -83,7 +83,6 @@
               {{row.delete}}
             </mat-icon>
           </td>
-
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -95,6 +94,11 @@
         </tr>
       </table>
     </div>
+
+    <div [ngClass]="'lyrics'" [style]="{width: '90%', display: 'flex', justifyContent: 'start', fontSize: '1rem'}">
+      <h2>Amount: {{totalAmount}}</h2>
+    </div>
+
     <!-- MODAL DELETE PRODUCT -->
     <div *ngIf="isShowModalDeleteProduct" [ngClass]="'popUp'">
       <div [style]="'margin: 0 1em'">

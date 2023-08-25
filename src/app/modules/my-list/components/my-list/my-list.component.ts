@@ -18,6 +18,7 @@ export class MyListComponent {
   isShowModalCleanList: boolean = false;
   indexProduct: number | null = null;
   valueFilterText: string = '';
+  totalAmount: number = 0;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('empTbSort') empTbSort = new MatSort();
@@ -68,7 +69,7 @@ export class MyListComponent {
       {
         isChecked: false,
         delete: 'delete',
-        name: 'Atún en Lata',
+        name: 'Atun en Lata',
         category: Categories.MeatFishAndEggs,
         brand: 'Nixe',
         price: 0.90,
@@ -127,8 +128,16 @@ export class MyListComponent {
       },
     ]
 
+    this.totalAmount = +this.sumAmount().toFixed(2);
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.products);
+  }
+
+  sumAmount(): number {
+    return this.products.reduce((amount: number, product: ProductsDTO) => {
+      const units = product.units ?? 1
+      return amount + (product!.price * units)
+    }, 0)
   }
 
   cleanInputFilter(event: any): void {
@@ -154,6 +163,7 @@ export class MyListComponent {
     if (this.indexProduct !== null) {
       this.products.splice(this.indexProduct, 1);
       this.dataSource = new MatTableDataSource(this.products);
+      this.totalAmount = +this.sumAmount().toFixed(2);
       this.closeDeleteProductModal();
     }
   }
