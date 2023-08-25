@@ -1,4 +1,5 @@
 export interface ProductsDTO {
+    id?: number,
     isChecked: boolean,
     delete: string,
     name: String,

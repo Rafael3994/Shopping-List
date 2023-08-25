@@ -78,7 +78,7 @@
         <ng-container matColumnDef="delete">
           <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef [style]="{ fontSize: '1.2em'}"></th>
           <td mat-cell *matCellDef="let row; let index = index;" class="status">
-            <mat-icon (click)="showDeleleProductModal($event, row.isChecked, index)"
+            <mat-icon (click)="showDeleleProductModal($event, row.isChecked, row.id)"
               [ngStyle]="row.isChecked ? {color: '#A2A2A2'} : {color: '#707070', cursor: 'pointer'}">
               {{row.delete}}
             </mat-icon>

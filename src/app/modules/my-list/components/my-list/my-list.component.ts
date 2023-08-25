@@ -31,6 +31,7 @@ export class MyListComponent {
   constructor() {
     this.products = [
       {
+        id: 0,
         isChecked: false,
         delete: 'delete',
         name: 'Leche Semidesnatada',
@@ -43,6 +44,7 @@ export class MyListComponent {
         image: '',
       },
       {
+        id: 1,
         isChecked: false,
         delete: 'delete',
         name: 'Pan de Molde Integral',
@@ -55,6 +57,7 @@ export class MyListComponent {
         image: '',
       },
       {
+        id: 2,
         isChecked: false,
         delete: 'delete',
         name: 'Arroz Basmati',
@@ -67,6 +70,7 @@ export class MyListComponent {
         image: '',
       },
       {
+        id: 3,
         isChecked: false,
         delete: 'delete',
         name: 'Atun en Lata',
@@ -79,6 +83,7 @@ export class MyListComponent {
         image: '',
       },
       {
+        id: 4,
         isChecked: false,
         delete: 'delete',
         name: 'Yogur Natural',
@@ -91,6 +96,7 @@ export class MyListComponent {
         image: '',
       },
       {
+        id: 5,
         isChecked: false,
         delete: 'delete',
         name: 'Spaghetti',
@@ -103,6 +109,7 @@ export class MyListComponent {
         image: '',
       },
       {
+        id: 6,
         isChecked: false,
         delete: 'delete',
         name: 'Patatas Fritas',
@@ -115,6 +122,7 @@ export class MyListComponent {
         image: '',
       },
       {
+        id: 7,
         isChecked: false,
         delete: 'delete',
         name: 'Agua Mineral',
