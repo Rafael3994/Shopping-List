@@ -6,9 +6,12 @@
   <div [id]="'container'" [style]="{display: 'flex', flexDirection: 'column', alignItems: 'center'}">
     <!-- Searchs options -->
     <div [style]="{display: 'flex', width: '80%',  marginBottom: '1.7rem', marginTop: '1rem'}">
-      <mat-form-field>
+      <mat-form-field class="example-form-field">
         <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">Search Product</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+        <input matInput (keyup)="applyFilter($event)" placeholder="" #input [(ngModel)]="valueFilterText">
+        <button *ngIf="valueFilterText" matSuffix mat-icon-button aria-label="Clear" (click)="cleanInputFilter($event)">
+        <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
       <!-- TODO: Mas adelante -->
       <!-- <mat-form-field>

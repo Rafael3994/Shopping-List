@@ -17,9 +17,11 @@ export class MyListComponent {
   isShowModalDeleteProduct: boolean = false;
   isShowModalCleanList: boolean = false;
   indexProduct: number | null = null;
+  valueFilterText: string = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('empTbSort') empTbSort = new MatSort();
+  @ViewChild('input') input: any;
 
   ngAfterViewInit() {
     this.dataSource.sort = this.empTbSort;
@@ -51,82 +53,91 @@ export class MyListComponent {
         marked: '',
         image: '',
       },
-      // {
-      //   isChecked: false,
-      //   delete: 'delete',
-      //   name: 'Arroz Basmati',
-      //   category: Categories.CerealsSugarAndSweets,
-      //   brand: 'Hacendado',
-      //   price: 2.00,
-      //   units: 3,
-      //   formatSize: '',
-      //   marked: 'Mercadona',
-      //   image: '',
-      // },
-      // {
-      //   isChecked: false,
-      //   delete: 'delete',
-      //   name: 'Atún en Lata',
-      //   category: Categories.MeatFishAndEggs,
-      //   brand: 'Nixe',
-      //   price: 0.90,
-      //   units: 3,
-      //   formatSize: '',
-      //   marked: '',
-      //   image: '',
-      // },
-      // {
-      //   isChecked: false,
-      //   delete: 'delete',
-      //   name: 'Yogur Natural',
-      //   category: Categories.Dairy,
-      //   brand: 'Hacendado',
-      //   price: 0.80,
-      //   units: 3,
-      //   formatSize: '',
-      //   marked: '',
-      //   image: '',
-      // },
-      // {
-      //   isChecked: false,
-      //   delete: 'delete',
-      //   name: 'Spaghetti',
-      //   category: Categories.CerealsSugarAndSweets,
-      //   brand: 'Hacendado',
-      //   price: 1.00,
-      //   units: 3,
-      //   formatSize: '',
-      //   marked: '',
-      //   image: '',
-      // },
-      // {
-      //   isChecked: false,
-      //   delete: 'delete',
-      //   name: 'Patatas Fritas',
-      //   category: Categories.Vegetables,
-      //   brand: 'Torres',
-      //   price: 1.80,
-      //   units: 1,
-      //   formatSize: '',
-      //   marked: 'Mercadona',
-      //   image: '',
-      // },
-      // {
-      //   isChecked: false,
-      //   delete: 'delete',
-      //   name: 'Agua Mineral',
-      //   category: Categories.NaturalProducts,
-      //   brand: 'Hacendado',
-      //   price: 3.15,
-      //   units: 3,
-      //   formatSize: '1.5L',
-      //   marked: 'Mercadona',
-      //   image: '',
-      // },
+      {
+        isChecked: false,
+        delete: 'delete',
+        name: 'Arroz Basmati',
+        category: Categories.CerealsSugarAndSweets,
+        brand: 'Hacendado',
+        price: 2.00,
+        units: 3,
+        formatSize: '',
+        marked: 'Mercadona',
+        image: '',
+      },
+      {
+        isChecked: false,
+        delete: 'delete',
+        name: 'Atún en Lata',
+        category: Categories.MeatFishAndEggs,
+        brand: 'Nixe',
+        price: 0.90,
+        units: 3,
+        formatSize: '',
+        marked: '',
+        image: '',
+      },
+      {
+        isChecked: false,
+        delete: 'delete',
+        name: 'Yogur Natural',
+        category: Categories.Dairy,
+        brand: 'Hacendado',
+        price: 0.80,
+        units: 3,
+        formatSize: '',
+        marked: '',
+        image: '',
+      },
+      {
+        isChecked: false,
+        delete: 'delete',
+        name: 'Spaghetti',
+        category: Categories.CerealsSugarAndSweets,
+        brand: 'Hacendado',
+        price: 1.00,
+        units: 3,
+        formatSize: '',
+        marked: '',
+        image: '',
+      },
+      {
+        isChecked: false,
+        delete: 'delete',
+        name: 'Patatas Fritas',
+        category: Categories.Vegetables,
+        brand: 'Torres',
+        price: 1.80,
+        units: 1,
+        formatSize: '',
+        marked: 'Mercadona',
+        image: '',
+      },
+      {
+        isChecked: false,
+        delete: 'delete',
+        name: 'Agua Mineral',
+        category: Categories.NaturalProducts,
+        brand: 'Hacendado',
+        price: 3.15,
+        units: 3,
+        formatSize: '1.5L',
+        marked: 'Mercadona',
+        image: '',
+      },
     ]
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.products);
+  }
+
+  cleanInputFilter(event: any): void {
+    event.stopPropagation();
+    this.dataSource.filter = '';
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+    this.valueFilterText = '';
   }
 
   // Show Delete Product Modal
