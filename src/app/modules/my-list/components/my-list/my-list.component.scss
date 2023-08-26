@@ -84,6 +84,59 @@ th {
   letter-spacing: 2px;
 }
 
+// PRODUCTO DETAILS
+.product-details {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 31rem;
+  height: 28rem;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px #707070 solid;
+  border-radius: 1rem;
+  color: #707070;
+  letter-spacing: 2px;
+}
+
+.button-add-rest {
+  height: 2.5rem;
+  width: 2.5rem;
+  background: content-box;
+  border: 1px #707070 solid;
+  color: #707070;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  padding: 0px;
+  text-align: center; 
+  margin: auto;
+}
+
+.input-units {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.5rem;
+  width: 9rem;
+  border: 1px #707070 solid;
+  color: #707070;
+  padding: 0;
+  margin: 0;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  padding: 0px;
+  text-align: center; 
+  margin: auto;
+}
+
+// Button Pop Up
 .button-popUp {
   height: 2.5rem;
   width: 6rem;

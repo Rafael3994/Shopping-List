@@ -16,6 +16,7 @@ export class MyListComponent {
   products: ProductsDTO[];
   isShowModalDeleteProduct: boolean = false;
   isShowModalCleanList: boolean = false;
+  isShowModalProductDetails: boolean = false
   indexProduct: number | null = null;
   valueFilterText: string = '';
   totalAmount: number = 0;
@@ -69,76 +70,80 @@ export class MyListComponent {
         marked: 'Mercadona',
         image: '',
       },
-      {
-        id: 3,
-        isChecked: false,
-        delete: 'delete',
-        name: 'Atun en Lata',
-        category: Categories.MeatFishAndEggs,
-        brand: 'Nixe',
-        price: 0.90,
-        units: 3,
-        formatSize: '',
-        marked: '',
-        image: '',
-      },
-      {
-        id: 4,
-        isChecked: false,
-        delete: 'delete',
-        name: 'Yogur Natural',
-        category: Categories.Dairy,
-        brand: 'Hacendado',
-        price: 0.80,
-        units: 3,
-        formatSize: '',
-        marked: '',
-        image: '',
-      },
-      {
-        id: 5,
-        isChecked: false,
-        delete: 'delete',
-        name: 'Spaghetti',
-        category: Categories.CerealsSugarAndSweets,
-        brand: 'Hacendado',
-        price: 1.00,
-        units: 3,
-        formatSize: '',
-        marked: '',
-        image: '',
-      },
-      {
-        id: 6,
-        isChecked: false,
-        delete: 'delete',
-        name: 'Patatas Fritas',
-        category: Categories.Vegetables,
-        brand: 'Torres',
-        price: 1.80,
-        units: 1,
-        formatSize: '',
-        marked: 'Mercadona',
-        image: '',
-      },
-      {
-        id: 7,
-        isChecked: false,
-        delete: 'delete',
-        name: 'Agua Mineral',
-        category: Categories.NaturalProducts,
-        brand: 'Hacendado',
-        price: 3.15,
-        units: 3,
-        formatSize: '1.5L',
-        marked: 'Mercadona',
-        image: '',
-      },
+      // {
+      //   id: 3,
+      //   isChecked: false,
+      //   delete: 'delete',
+      //   name: 'Atun en Lata',
+      //   category: Categories.MeatFishAndEggs,
+      //   brand: 'Nixe',
+      //   price: 0.90,
+      //   units: 3,
+      //   formatSize: '',
+      //   marked: '',
+      //   image: '',
+      // },
+      // {
+      //   id: 4,
+      //   isChecked: false,
+      //   delete: 'delete',
+      //   name: 'Yogur Natural',
+      //   category: Categories.Dairy,
+      //   brand: 'Hacendado',
+      //   price: 0.80,
+      //   units: 3,
+      //   formatSize: '',
+      //   marked: '',
+      //   image: '',
+      // },
+      // {
+      //   id: 5,
+      //   isChecked: false,
+      //   delete: 'delete',
+      //   name: 'Spaghetti',
+      //   category: Categories.CerealsSugarAndSweets,
+      //   brand: 'Hacendado',
+      //   price: 1.00,
+      //   units: 3,
+      //   formatSize: '',
+      //   marked: '',
+      //   image: '',
+      // },
+      // {
+      //   id: 6,
+      //   isChecked: false,
+      //   delete: 'delete',
+      //   name: 'Patatas Fritas',
+      //   category: Categories.Vegetables,
+      //   brand: 'Torres',
+      //   price: 1.80,
+      //   units: 1,
+      //   formatSize: '',
+      //   marked: 'Mercadona',
+      //   image: '',
+      // },
+      // {
+      //   id: 7,
+      //   isChecked: false,
+      //   delete: 'delete',
+      //   name: 'Agua Mineral',
+      //   category: Categories.NaturalProducts,
+      //   brand: 'Hacendado',
+      //   price: 3.15,
+      //   units: 3,
+      //   formatSize: '1.5L',
+      //   marked: 'Mercadona',
+      //   image: '',
+      // },
     ]
 
     this.totalAmount = +this.sumAmount().toFixed(2);
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.products);
+  }
+
+  showModalProductDetails() {
+    this.isShowModalProductDetails = !this.isShowModalProductDetails;
   }
 
   sumAmount(): number {
@@ -168,30 +173,42 @@ export class MyListComponent {
 
   // Delete Product
   deleteProduct(): void {
-    if (this.indexProduct !== null) {
-      this.products.splice(this.indexProduct, 1);
+      this.products.splice(this.products.findIndex((product) => product.id === this.indexProduct), 1);
       this.dataSource = new MatTableDataSource(this.products);
       this.totalAmount = +this.sumAmount().toFixed(2);
       this.closeDeleteProductModal();
+
+      // Are there some isChecked in false?
+    const isCheckFalse = this.products.some((item: ProductsDTO) => {
+      if (!item.isChecked) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    
+    if(!isCheckFalse) {
+      this.isShowModalCleanList = true;
     }
   }
 
-  // Check if all productes al check it
-  isListComplited(event: any, index: number) {
+  checkChange(event: any, index: number) {
     event.stopPropagation();
     this.indexProduct = index;
-    const realCheckBox = !this.products[index].isChecked
-    // Are there some false?
-    const isCheckFalse = this.products.some((item: ProductsDTO, i: number) => {
-      if (index === i && !realCheckBox) {
-        return true;
-      }
-      if (index !== i && !item.isChecked) {
-        return true;
-      }
-      return
-    });
 
+    // I make this because there are a delay to change
+    const realCheckBox = !this.products.find((product) => product.id === index)?.isChecked
+    // Are there some isChecked in false?
+    const isCheckFalse = this.products.some((item: ProductsDTO) => {
+      if (item.id === index && !realCheckBox) {
+        return true;
+      }
+      if (item.id !== index && !item.isChecked) {
+        return true;
+      }
+      return;
+    });
+    
     if(!isCheckFalse) {
       this.isShowModalCleanList = true;
     }
@@ -199,15 +216,25 @@ export class MyListComponent {
 
   // Close delete product modal
   closeDeleteProductModal(): void {
-    this.indexProduct = null;
+    if (!this.isShowModalCleanList && !this.isShowModalDeleteProduct) {
+      this.indexProduct = null;
+    }
     this.isShowModalDeleteProduct = false;
   }
 
   // Close delete product modal
-  closeCleanListModal(): void {    
-    this.products[this.indexProduct!].isChecked = false;
-    this.indexProduct = null;
+  closeCleanListModal(): void {   
+    const productFound = this.products[this.products.findIndex((product) => product.id === this.indexProduct)];
+    if(productFound) productFound.isChecked = false;
+
+    if (!this.isShowModalCleanList && !this.isShowModalDeleteProduct) {
+      this.indexProduct = null;
+    }
     this.isShowModalCleanList = false;
+  }
+
+  closeProductDetailsModal(): void {
+    this.isShowModalProductDetails = false;
   }
 
   cleanList(): void {
@@ -217,6 +244,8 @@ export class MyListComponent {
   }
 
   closeAllModals(): void {
+    this.closeCleanListModal();
+    this.closeProductDetailsModal();
     this.closeDeleteProductModal(); 
   }
 
