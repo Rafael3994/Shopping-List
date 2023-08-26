@@ -37,7 +37,7 @@
             <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header [style]="{fontSize: '1.2em'}">
               Name
             </th>
-            <td (click)="showModalProductDetails()"
+            <td (click)="showModalProductDetails($event)"
               [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
               {{row.name}}
             </td>
@@ -47,7 +47,7 @@
           <ng-container matColumnDef="category">
             <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header [style]="{fontSize: '1.2em'}">
               Category </th>
-            <td (click)="showModalProductDetails()"
+            <td (click)="showModalProductDetails($event)"
               [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
               {{row.category}}
             </td>
@@ -57,7 +57,7 @@
           <ng-container matColumnDef="brand">
             <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header [style]="{fontSize: '1.2em'}">
               Brand </th>
-            <td (click)="showModalProductDetails()"
+            <td (click)="showModalProductDetails($event)"
               [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
               {{row.brand}}
             </td>
@@ -67,7 +67,7 @@
           <ng-container matColumnDef="price">
             <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header [style]="{fontSize: '1.2em'}">
               Price </th>
-            <td (click)="showModalProductDetails()"
+            <td (click)="showModalProductDetails($event)"
               [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
               {{row.price}}
             </td>
@@ -77,7 +77,7 @@
           <ng-container matColumnDef="units">
             <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header [style]="{fontSize: '1.2em'}">
               Unit/s </th>
-            <td (click)="showModalProductDetails()"
+            <td (click)="showModalProductDetails($event)"
               [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
               {{row.units}}
             </td>

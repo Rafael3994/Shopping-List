@@ -142,7 +142,8 @@ export class MyListComponent {
     this.dataSource = new MatTableDataSource(this.products);
   }
 
-  showModalProductDetails() {
+  showModalProductDetails(event: any) {
+    event.stopPropagation();
     this.isShowModalProductDetails = !this.isShowModalProductDetails;
   }
 
