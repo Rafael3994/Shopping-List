@@ -19,6 +19,7 @@ export class MyListComponent {
   isShowModalProductDetails: boolean = false
   indexProduct: number | null = null;
   valueFilterText: string = '';
+  itemSelect: ProductsDTO | null = null;
   totalAmount: number = 0;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -142,8 +143,9 @@ export class MyListComponent {
     this.dataSource = new MatTableDataSource(this.products);
   }
 
-  showModalProductDetails(event: any) {
+  showModalProductDetails(event: any, item?: ProductsDTO) {
     event.stopPropagation();
+    this.itemSelect = item!;    
     this.isShowModalProductDetails = !this.isShowModalProductDetails;
   }
 
