@@ -18,6 +18,7 @@ export class MyListComponent {
   isShowModalCleanList: boolean = false;
   isShowModalProductDetails: boolean = false
   indexProduct: number | null = null;
+  indexLastProductSelected: number | null = null;
   valueFilterText: string = '';
   itemSelect: ProductsDTO | null = null;
   totalAmount: number = 0;
@@ -216,6 +217,9 @@ export class MyListComponent {
 
     // I make this because there are a delay to change
     const realCheckBox = !this.products.find((product) => product.id === index)?.isChecked
+    // If is check save the last index product selected
+    if(realCheckBox) this.indexLastProductSelected = index;
+    
     // Are there some isChecked in false?
     const isCheckFalse = this.products.some((item: ProductsDTO) => {
       if (item.id === index && !realCheckBox) {
@@ -242,7 +246,7 @@ export class MyListComponent {
 
   // Close delete product modal
   closeCleanListModal(): void {   
-    const productFound = this.products[this.products.findIndex((product) => product.id === this.indexProduct)];
+    const productFound = this.products[this.products.findIndex((product) => product.id === this.indexLastProductSelected)];
     if(productFound) productFound.isChecked = false;
 
     if (!this.isShowModalCleanList && !this.isShowModalDeleteProduct) {
@@ -260,6 +264,8 @@ export class MyListComponent {
     this.products = [];
     this.dataSource = new MatTableDataSource(this.products);
     this.isShowModalCleanList = false;
+    this.indexLastProductSelected = null;
+    this.indexProduct = null;
   }
 
   closeAllModals(): void {
