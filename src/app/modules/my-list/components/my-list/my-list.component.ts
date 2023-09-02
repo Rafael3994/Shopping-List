@@ -21,6 +21,7 @@ export class MyListComponent {
   valueFilterText: string = '';
   itemSelect: ProductsDTO | null = null;
   totalAmount: number = 0;
+  isHoverBtnRest: boolean = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('empTbSort') empTbSort = new MatSort();
@@ -156,6 +157,20 @@ export class MyListComponent {
     }, 0)
   }
 
+  restUnit(): void {
+    console.log('click res');
+    
+    this.itemSelect!.units! --;
+    // If is negative puts 0
+    if (this.itemSelect!.units! < 1) {
+      this.itemSelect!.units = 1;
+    }
+  }
+
+  sumUnit(): void {
+    this.itemSelect!.units! ++; 
+  }
+
   cleanInputFilter(event: any): void {
     event.stopPropagation();
     this.dataSource.filter = '';
@@ -237,6 +252,7 @@ export class MyListComponent {
   }
 
   closeProductDetailsModal(): void {
+    this.itemSelect = null;
     this.isShowModalProductDetails = false;
   }
 
