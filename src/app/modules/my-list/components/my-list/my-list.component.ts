@@ -158,17 +158,17 @@ export class MyListComponent {
   }
 
   restUnit(): void {
-    console.log('click res');
-    
     this.itemSelect!.units! --;
     // If is negative puts 0
     if (this.itemSelect!.units! < 1) {
       this.itemSelect!.units = 1;
     }
+    this.totalAmount = +this.sumAmount().toFixed(2);
   }
 
   sumUnit(): void {
-    this.itemSelect!.units! ++; 
+    this.itemSelect!.units! ++;
+    this.totalAmount = +this.sumAmount().toFixed(2);
   }
 
   cleanInputFilter(event: any): void {
