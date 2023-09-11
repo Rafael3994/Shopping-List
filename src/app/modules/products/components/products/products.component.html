@@ -1,1 +1,69 @@
-<p>products works!</p>
+<!-- Content -->
+<div [style]="{ width: '99.9vw', height: '80.9vh' }">
+  <div [style]="{backgoundColor: 'pink', width: '99.9vw', height: '80.9vh'}">
+    <!-- Title -->
+    <h1 [style]="{ marginLeft: '3em', pointerEvents: 'none'}" [ngClass]="'lyrics'">Products</h1>
+    <!-- Container -->
+    <div [id]="'container'" [style]="{display: 'flex', flexDirection: 'column', alignItems: 'center'}">
+      <!-- Searchs options -->
+      <div [style]="{display: 'flex', width: '80%',  marginBottom: '1.7rem', marginTop: '1rem'}">
+        <!-- <mat-form-field class="example-form-field">
+            <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">Search Product</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="" #input [(ngModel)]="valueFilterText">
+            <button *ngIf="valueFilterText" matSuffix mat-icon-button aria-label="Clear"
+              (click)="cleanInputFilter($event)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field> -->
+        <!-- TODO: Mas adelante -->
+        <!-- <mat-form-field>
+          <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">Change Market</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+        </mat-form-field> -->
+      </div>
+
+      <div>
+        <mat-grid-list [cols]="columns" rowHeight="1.75:3" (window:resize)="handleResize($event)">
+          <mat-grid-tile *ngFor="let product of obs | async">
+            <div [ngClass]="'product-details'">
+              <div [ngStyle]="{display: 'flex', justifyContent: 'center', marginTop: '1rem'}">
+                <div
+                  [ngStyle]="{border: '1px #707070 solid', width: '8.5rem', height: '8rem', margin: '0', borderRadius: '1rem', backgroundImage: 'url(./../../../../../../assets/img-product.jpeg)'}">
+                </div>
+              </div>
+              <div [ngStyle]="{marginLeft: '0.9rem', marginRight: '0.9rem', marginTop: '0.5rem'}">
+                <h3 [ngStyle]="{margin: 0}">{{product.name}}</h3>
+                <div>
+                  <h4 [ngStyle]="{margin: 0, marginTop: '0.6rem'}">
+                    Brand:
+                    <span [style]="{fontSize: '0.9rem'}">{{product.brand}}</span>
+                  </h4>
+                </div>
+                <div>
+                  <h4 [ngStyle]="{margin: 0, marginTop: '0.3rem'}">
+                    Format:
+                    <span [style]="{fontSize: '0.9rem'}">{{product.format}}</span>
+                  </h4>
+                </div>
+                <div>
+                  <h4 [ngStyle]="{margin: 0, marginTop: '0.3rem'}">
+                    Price:
+                    <span [style]="{fontSize: '0.9rem'}">{{product.price}}</span>
+                  </h4>
+                </div>
+                <div [ngStyle]="{display: 'flex', alignItems: 'center', justifyContent: 'center'}">
+                    <div [ngStyle]="{cursor: 'pointer', borderRadius: '1rem', border: '#707070 1px solid', marginTop: '0.8rem', height: '1.7rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}">
+                        <p [ngStyle]="{margin: '0 0.5rem', display: 'flex'}">Add to the list</p>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+      <div [ngStyle]="{marginTop: '1rem', marginBottom: '4rem', width: '100%'}">
+        <mat-paginator [ngStyle]="{backgroundColor: '#fafafa', marginRight: '5rem'}" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

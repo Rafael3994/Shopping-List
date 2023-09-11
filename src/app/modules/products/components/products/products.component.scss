@@ -1,0 +1,37 @@
+// LYRICS
+.lyrics {
+    font-family: 'Segoe_UI';
+    letter-spacing: 2px;
+    align-items: center;
+    justify-content: center;
+    color: #707070;
+  }
+
+  .example-card {
+    max-width: 200px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+//   mat-grid-tile {
+//     background: lightblue;
+//   }
+
+  .mat-grid-list { width: 80vw; }
+
+  .product-details {
+    background-color: '#fafafa';
+    width: 90%;
+    height: 21rem;
+    border: 1px #707070 solid;
+    border-radius: 1rem;
+    color: #707070;
+    letter-spacing: 2px;
+  }
+
+  :host ::ng-deep .mat-paginator-container {
+      align-items: baseline;
+  }
