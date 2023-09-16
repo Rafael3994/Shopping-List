@@ -23,38 +23,74 @@
       </div>
 
       <div>
-        <mat-grid-list [cols]="columns" rowHeight="1.75:3" (window:resize)="handleResize($event)">
+        <mat-grid-list [cols]="columns" [gutterSize]="'0rem'" rowHeight="23rem" (window:resize)="handleResize($event)">
           <mat-grid-tile *ngFor="let product of obs | async">
             <div [ngClass]="'product-details'">
-              <div [ngStyle]="{display: 'flex', justifyContent: 'center', marginTop: '1rem'}">
+              <div [ngStyle]="{height: '100%'}">
+                <div [ngStyle]="{display: 'flex', justifyContent: 'center', marginTop: '1rem'}">
+                  <div
+                    [ngStyle]="{border: '1px #707070 solid', width: '8.5rem', height: '8rem', margin: '0', borderRadius: '1rem', backgroundImage: 'url(./../../../../../../assets/img-product.jpeg)'}">
+                  </div>
+                </div>
                 <div
-                  [ngStyle]="{border: '1px #707070 solid', width: '8.5rem', height: '8rem', margin: '0', borderRadius: '1rem', backgroundImage: 'url(./../../../../../../assets/img-product.jpeg)'}">
-                </div>
-              </div>
-              <div [ngStyle]="{marginLeft: '0.9rem', marginRight: '0.9rem', marginTop: '0.5rem'}">
-                <h3 [ngStyle]="{margin: 0}">{{product.name}}</h3>
-                <div>
-                  <h4 [ngStyle]="{margin: 0, marginTop: '0.6rem'}">
-                    Brand:
-                    <span [style]="{fontSize: '0.9rem'}">{{product.brand}}</span>
-                  </h4>
-                </div>
-                <div>
-                  <h4 [ngStyle]="{margin: 0, marginTop: '0.3rem'}">
-                    Format:
-                    <span [style]="{fontSize: '0.9rem'}">{{product.format}}</span>
-                  </h4>
-                </div>
-                <div>
-                  <h4 [ngStyle]="{margin: 0, marginTop: '0.3rem'}">
-                    Price:
-                    <span [style]="{fontSize: '0.9rem'}">{{product.price}}</span>
-                  </h4>
-                </div>
-                <div [ngStyle]="{display: 'flex', alignItems: 'center', justifyContent: 'center'}">
-                    <div [ngStyle]="{cursor: 'pointer', borderRadius: '1rem', border: '#707070 1px solid', marginTop: '0.8rem', height: '1.7rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}">
-                        <p [ngStyle]="{margin: '0 0.5rem', display: 'flex'}">Add to the list</p>
+                  [ngStyle]="{display: 'flex', flexDirection: 'column', justifyContent: 'space-around', height: '57%', marginLeft: '0.9rem', marginRight: '0.9rem', marginTop: '0.5rem'}">
+                  <div [ngStyle]="{height: 'auto'}">
+                    <h3 [ngStyle]="{margin: 0, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'}">
+                      {{product.name}}</h3>
+                    <div>
+                      <h4 [ngStyle]="{margin: 0, marginTop: '0.6rem'}">
+                        Brand:
+                        <span [style]="{fontSize: '0.9rem'}">{{product.brand}}</span>
+                      </h4>
                     </div>
+                    <div>
+                      <h4 [ngStyle]="{margin: 0, marginTop: '0.3rem'}">
+                        Format:
+                        <span [style]="{fontSize: '0.9rem'}">{{product.format}}</span>
+                      </h4>
+                    </div>
+                    <div>
+                      <h4 [ngStyle]="{margin: 0, marginTop: '0.3rem'}">
+                        Price:
+                        <span [style]="{fontSize: '0.9rem'}">{{product.price}}</span>
+                      </h4>
+                    </div>
+                  </div>
+                  <div>
+                    <div *ngIf="product.units > 0; else elseBlock">
+                      <div [ngStyle]="{display: 'flex', alignItems: 'center', justifyContent: 'center'}">
+                          <div [style]="{display: 'flex', justifyContent: 'space-between'}">
+                            <button (click)="addProductToTheList(product)" [className]="'button'" [style]="{marginRight: '1rem'}">+</button>
+                            <div [className]="'input-units'">{{product.units}}</div>
+                            <button
+                            [className]="'button'"
+                            (click)="restProductToTheList(product)"
+                            [style]="{marginLeft: '1rem'}">-</button>
+                          </div>
+                        </div>
+                    </div>
+                    <ng-template #elseBlock>
+                      <div [ngStyle]="{display: 'flex', alignItems: 'center', justifyContent: 'center'}"
+                        (click)="addProductToTheList(product)">
+                        <div
+                          [ngStyle]="{cursor: 'pointer', borderRadius: '1rem', border: '#707070 1px solid', width: '12rem', height: '2.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}">
+                          <p [ngStyle]="{margin: '0 0.5rem', display: 'flex'}">Add to the list</p>
+                        </div>
+                      </div>
+                    </ng-template>
+                    <!-- <div [ngStyle]="{display: 'flex', alignItems: 'center', justifyContent: 'center'}" (click)="addProductToTheList(product)">
+                      <div
+                        [ngStyle]="{cursor: 'pointer', borderRadius: '1rem', border: '#707070 1px solid', width: '12rem', height: '2.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}">
+                        <p [ngStyle]="{margin: '0 0.5rem', display: 'flex'}">Add to the list</p>
+                      </div>
+                    </div>
+                    <div [ngStyle]="{display: 'flex', alignItems: 'center', justifyContent: 'center'}" (click)="addProductToTheList(product)">
+                      <div
+                        [ngStyle]="{cursor: 'pointer', borderRadius: '1rem', border: '#707070 1px solid', width: '12rem', height: '2.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}">
+                        <p [ngStyle]="{margin: '0 0.5rem', display: 'flex'}">Add to the list</p>
+                      </div>
+                    </div> -->
+                  </div>
                 </div>
               </div>
             </div>
@@ -62,7 +98,8 @@
         </mat-grid-list>
       </div>
       <div [ngStyle]="{marginTop: '1rem', marginBottom: '4rem', width: '100%'}">
-        <mat-paginator [ngStyle]="{backgroundColor: '#fafafa', marginRight: '5rem'}" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        <mat-paginator [ngStyle]="{backgroundColor: '#fafafa', marginRight: '5rem'}"
+          [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
       </div>
     </div>
   </div>

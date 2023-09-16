@@ -24,14 +24,54 @@
 
   .product-details {
     background-color: '#fafafa';
-    width: 90%;
-    height: 21rem;
+    width: 15rem;
+    height: 22rem;
     border: 1px #707070 solid;
     border-radius: 1rem;
     color: #707070;
     letter-spacing: 2px;
+    display: flex;
+    flex-direction: column;
   }
 
   :host ::ng-deep .mat-paginator-container {
       align-items: baseline;
+  }
+
+  .button {
+    height: 2.2rem;
+    width: 2.2rem;
+    background: content-box;
+    border: 1px #707070 solid;
+    color: #707070;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    padding: 0px;
+    text-align: center; 
+    margin: auto;
+  }
+
+  .button:hover {
+    background-color: rgb(236, 235, 235);
+    font-weight: bold;
+  }
+  
+  .input-units {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.1rem;
+    width: 7rem;
+    border: 1px #707070 solid;
+    color: #707070;
+    padding: 0;
+    margin: 0;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    padding: 0px;
+    text-align: center; 
+    margin: auto;
   }

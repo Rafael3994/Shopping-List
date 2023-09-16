@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { Categories, ProductsDTO } from 'src/app/modules/products/products.DTO';
+import { Categories, ProductDTO } from 'src/app/modules/products/product.DTO';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,15 +12,15 @@ import { MatTableDataSource } from '@angular/material/table';
 
 export class MyListComponent {
   displayedColumns: string[] = ['check', 'name', 'category', 'brand', 'price', 'units', 'delete'];
-  dataSource: MatTableDataSource<ProductsDTO>;
-  products: ProductsDTO[];
+  dataSource: MatTableDataSource<ProductDTO>;
+  products: ProductDTO[];
   isShowModalDeleteProduct: boolean = false;
   isShowModalCleanList: boolean = false;
   isShowModalProductDetails: boolean = false
   indexProduct: number | null = null;
   indexLastProductSelected: number | null = null;
   valueFilterText: string = '';
-  itemSelect: ProductsDTO | null = null;
+  itemSelect: ProductDTO | null = null;
   totalAmount: number = 0;
   isHoverBtnRest: boolean = false;
 
@@ -145,14 +145,14 @@ export class MyListComponent {
     this.dataSource = new MatTableDataSource(this.products);
   }
 
-  showModalProductDetails(event: any, item?: ProductsDTO) {
+  showModalProductDetails(event: any, item?: ProductDTO) {
     event.stopPropagation();
     this.itemSelect = item!;    
     this.isShowModalProductDetails = !this.isShowModalProductDetails;
   }
 
   sumAmount(): number {
-    return this.products.reduce((amount: number, product: ProductsDTO) => {
+    return this.products.reduce((amount: number, product: ProductDTO) => {
       const units = product.units ?? 1
       return amount + (product!.price * units)
     }, 0)
@@ -198,7 +198,7 @@ export class MyListComponent {
       this.closeDeleteProductModal();
 
       // Are there some isChecked in false?
-    const isCheckFalse = this.products.some((item: ProductsDTO) => {
+    const isCheckFalse = this.products.some((item: ProductDTO) => {
       if (!item.isChecked) {
         return true;
       } else {
@@ -221,7 +221,7 @@ export class MyListComponent {
     if(realCheckBox) this.indexLastProductSelected = index;
     
     // Are there some isChecked in false?
-    const isCheckFalse = this.products.some((item: ProductsDTO) => {
+    const isCheckFalse = this.products.some((item: ProductDTO) => {
       if (item.id === index && !realCheckBox) {
         return true;
       }

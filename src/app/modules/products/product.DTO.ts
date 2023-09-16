@@ -1,4 +1,4 @@
-export interface ProductsDTO {
+export interface ProductDTO {
     id?: number,
     isChecked: boolean,
     delete: string,
@@ -9,7 +9,7 @@ export interface ProductsDTO {
     formatSize: String,
     marked: String,
     image: String,
-    units?: number,
+    units: number,
 };
 
 export enum Categories {
