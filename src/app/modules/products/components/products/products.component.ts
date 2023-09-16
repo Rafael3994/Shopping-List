@@ -134,7 +134,7 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.columns = (window.innerWidth <= 640) ? 1 : (window.innerWidth <= 1090) ? 2 : (window.innerWidth <= 1395) ? 3 : (window.innerWidth <= 1708) ? 4 : 5;
+    this.columns = this.resizeCondition();
     this.changeDetectorRef.detectChanges();
     this.dataSource.paginator = this.paginator;
     this.obs = this.dataSource.connect();
@@ -148,7 +148,11 @@ export class ProductsComponent implements OnInit {
 
   handleResize(event: UIEvent) {
     const window = event.target as Window;
-    this.columns = (window.innerWidth <= 640) ? 1 : (window.innerWidth <= 1090) ? 2 : (window.innerWidth <= 1395) ? 3 : (window.innerWidth <= 1708) ? 4 : 5;
+    this.columns = this.resizeCondition();
+  }
+
+  resizeCondition() {
+    return (window.innerWidth <= 628) ? 1 : (window.innerWidth <= 930) ? 2 : (window.innerWidth <= 1238) ? 3 : (window.innerWidth <= 1540) ? 4 : 5;
   }
 
   addProductToTheList(productSelected: ProductDTO) {
