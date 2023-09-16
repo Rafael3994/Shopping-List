@@ -5,21 +5,27 @@
     <h1 [style]="{ marginLeft: '3em', pointerEvents: 'none'}" [ngClass]="'lyrics'">Products</h1>
     <!-- Container -->
     <div [id]="'container'" [style]="{display: 'flex', flexDirection: 'column', alignItems: 'center'}">
-      <!-- Searchs options -->
-      <div [style]="{display: 'flex', width: '80%',  marginBottom: '1.7rem', marginTop: '1rem'}">
-        <!-- <mat-form-field class="example-form-field">
-            <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">Search Product</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="" #input [(ngModel)]="valueFilterText">
-            <button *ngIf="valueFilterText" matSuffix mat-icon-button aria-label="Clear"
-              (click)="cleanInputFilter($event)">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field> -->
-        <!-- TODO: Mas adelante -->
-        <!-- <mat-form-field>
-          <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">Change Market</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-        </mat-form-field> -->
+      <!-- Searchs by name -->
+      <div
+        [style]="{display: 'flex', width: '80%', justifyContent: 'space-between', marginLeft: '0rem', marginBottom: '1.7rem', marginTop: '1rem'}">
+        <mat-form-field [ngStyle]="{textAlign: 'center'}">
+          <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">Search Product</mat-label>
+          <input matInput (keyup)="applyFilter($event)" #input [(ngModel)]="valueFilterText">
+          <button *ngIf="valueFilterText" matSuffix mat-icon-button aria-label="Clear"
+            (click)="cleanInputFilter($event)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <!-- Filter by category -->
+        <mat-form-field [ngStyle]="{width: '12rem', textAlign: 'center'}">
+          <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">Search Category</mat-label>
+          <mat-select (valueChange)="changeCategoryFilter($event)">
+            <mat-option>All</mat-option>
+            <mat-option *ngFor="let category of categories | keyvalue" [value]="category">{{category.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
       </div>
 
       <div>
@@ -59,15 +65,14 @@
                   <div>
                     <div *ngIf="product.units > 0; else elseBlock">
                       <div [ngStyle]="{display: 'flex', alignItems: 'center', justifyContent: 'center'}">
-                          <div [style]="{display: 'flex', justifyContent: 'space-between'}">
-                            <button (click)="addProductToTheList(product)" [className]="'button'" [style]="{marginRight: '1rem'}">+</button>
-                            <div [className]="'input-units'">{{product.units}}</div>
-                            <button
-                            [className]="'button'"
-                            (click)="restProductToTheList(product)"
+                        <div [style]="{display: 'flex', justifyContent: 'space-between'}">
+                          <button (click)="addProductToTheList(product)" [className]="'button'"
+                            [style]="{marginRight: '1rem'}">+</button>
+                          <div [className]="'input-units'">{{product.units}}</div>
+                          <button [className]="'button'" (click)="restProductToTheList(product)"
                             [style]="{marginLeft: '1rem'}">-</button>
-                          </div>
                         </div>
+                      </div>
                     </div>
                     <ng-template #elseBlock>
                       <div [ngStyle]="{display: 'flex', alignItems: 'center', justifyContent: 'center'}"
@@ -78,18 +83,6 @@
                         </div>
                       </div>
                     </ng-template>
-                    <!-- <div [ngStyle]="{display: 'flex', alignItems: 'center', justifyContent: 'center'}" (click)="addProductToTheList(product)">
-                      <div
-                        [ngStyle]="{cursor: 'pointer', borderRadius: '1rem', border: '#707070 1px solid', width: '12rem', height: '2.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}">
-                        <p [ngStyle]="{margin: '0 0.5rem', display: 'flex'}">Add to the list</p>
-                      </div>
-                    </div>
-                    <div [ngStyle]="{display: 'flex', alignItems: 'center', justifyContent: 'center'}" (click)="addProductToTheList(product)">
-                      <div
-                        [ngStyle]="{cursor: 'pointer', borderRadius: '1rem', border: '#707070 1px solid', width: '12rem', height: '2.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}">
-                        <p [ngStyle]="{margin: '0 0.5rem', display: 'flex'}">Add to the list</p>
-                      </div>
-                    </div> -->
                   </div>
                 </div>
               </div>
@@ -99,7 +92,7 @@
       </div>
       <div [ngStyle]="{marginTop: '1rem', marginBottom: '4rem', width: '100%'}">
         <mat-paginator [ngStyle]="{backgroundColor: '#fafafa', marginRight: '5rem'}"
-          [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          [pageSizeOptions]="[10, 20, 25, 100]"></mat-paginator>
       </div>
     </div>
   </div>

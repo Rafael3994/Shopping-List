@@ -125,10 +125,16 @@ const products: ProductDTO[] = [
 export class ProductsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('input') input: any;
+
+  categories = Categories;
   obs: Observable<any>;
-  dataSource: MatTableDataSource<ProductDTO> = new MatTableDataSource<ProductDTO>(products);
   columns: number;
   list: ProductDTO[] = [];
+  valueFilterText: string = '';
+  valueFilterCategory: string = '';
+  dataSource: MatTableDataSource<ProductDTO> = new MatTableDataSource<ProductDTO>(products);
+  
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {
   }
@@ -138,12 +144,64 @@ export class ProductsComponent implements OnInit {
     this.changeDetectorRef.detectChanges();
     this.dataSource.paginator = this.paginator;
     this.obs = this.dataSource.connect();
+
+    // Define filter
+    this.dataSource.filterPredicate = function customFilter(data , filter: string ): boolean {
+      const filterJSON = JSON.parse(filter);
+      // 1. If both are empty
+      if (filterJSON.name === '' && filterJSON.category === '') return true;
+      // 2. Only category
+      if (filterJSON.name === '' && filterJSON.category !== '') {
+        return data.category === filterJSON.category;
+      }
+      // 3. Only name
+      if (filterJSON.name !== '' && filterJSON.category === '') {
+        return data.name.toLowerCase().includes(filterJSON.name);
+      }
+      // 4. If both have data
+      if (filterJSON.name !== '' && filterJSON.category !== '') {
+        if (data.category === filterJSON.category && data.name.toLowerCase().includes(filterJSON.name)) {
+            return true;
+        }
+      }    
+      return false;
+    }
   }
 
   ngOnDestroy() {
     if (this.dataSource) {
       this.dataSource.disconnect();
     }
+  }
+
+  // Filter products by name
+  applyFilter(event: Event): void {
+    this.valueFilterText = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.dataSource.filter = JSON.stringify({name: this.valueFilterText, category: this.valueFilterCategory})
+
+    if (this.dataSource.paginator) { 
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  // Filter products by category
+  changeCategoryFilter(event: {key: string, value: string}) {
+    // Save category
+    this.valueFilterCategory = event ? event.value : '' as string;    
+    this.dataSource.filter = JSON.stringify({name: this.valueFilterText, category: this.valueFilterCategory})
+
+    if (this.dataSource.paginator) { 
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  cleanInputFilter(event: any): void {
+    event.stopPropagation();
+    this.dataSource.filter = '';
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+    this.valueFilterText = '';
   }
 
   handleResize(event: UIEvent) {
