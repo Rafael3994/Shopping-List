@@ -24,10 +24,8 @@ width: { [klass: string]: any; }|null|undefined;
   lenghtLenguage = 0
 
   changeLenguage(value: any) {
-    console.log(value);
     this.lenguages.map((len, index) => {
       if(len.lenguage === value) {
-        console.log('value', index);
         this.lenghtLenguage = index;
         return
       }

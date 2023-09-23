@@ -7,7 +7,7 @@ export const initialState: ProductDTO[] = [];
 export const productListReducer = createReducer(
   initialState,
   on(update, (state, { productsListSelected }) => {
-  return productsListSelected;
-}),
+    return productsListSelected;
+  }),
   on(reset, (state) => [])
 );

@@ -36,7 +36,7 @@ export class MyListComponent {
   ngAfterViewInit() {
     this.dataSource.sort = this.empTbSort;
   }
-  
+
   constructor(private store: Store<{ productsListSelected: ProductDTO[] }>) {
     this.productsListSelected$ = store.select('productsListSelected');
     this.productsListSelected$.subscribe(res => this.productList = structuredClone(res));
@@ -146,7 +146,6 @@ export class MyListComponent {
       //   image: '',
       // },
     ]
-
     this.totalAmount = +this.sumAmount().toFixed(2);
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.productList);
@@ -171,11 +170,23 @@ export class MyListComponent {
     if (this.itemSelect!.units! < 1) {
       this.itemSelect!.units = 1;
     }
+    this.productList.find((product) => {
+      if (product.id === this.itemSelect?.id) {
+        product.units = this.itemSelect!.units
+      }
+    });
+    this.store.dispatch(update({productsListSelected: structuredClone(this.productList)}));
     this.totalAmount = +this.sumAmount().toFixed(2);
   }
 
   sumUnit(): void {
     this.itemSelect!.units! ++;
+    this.productList.find((product) => {
+      if (product.id === this.itemSelect?.id) {
+        product.units = this.itemSelect!.units
+      }
+    });
+    this.store.dispatch(update({productsListSelected: structuredClone(this.productList)}));
     this.totalAmount = +this.sumAmount().toFixed(2);
   }
 
@@ -216,14 +227,14 @@ export class MyListComponent {
     if (!isCheckFalse) {
       this.isShowModalCleanList = true;
     }
+    this.store.dispatch(update({ productsListSelected: structuredClone(this.productList) }));
   }
 
   checkChange(event: any, index: number) {
     event.stopPropagation();
     this.indexProduct = index;
-
     // I make this because there are a delay to change
-    const realCheckBox = !this.productList.find((product) => product.id === index)?.isChecked
+    const realCheckBox = !this.productList.find((product) => product.id === index)?.isChecked;
     // If is check save the last index product selected
     if (realCheckBox) this.indexLastProductSelected = index;
 
@@ -240,6 +251,9 @@ export class MyListComponent {
     if (!isCheckFalse) {
       this.isShowModalCleanList = true;
     }
+    const productListCopy = structuredClone(this.productList);
+    productListCopy.find((product) => { if (product.id === index) { product.isChecked = realCheckBox } });
+    this.store.dispatch(update({ productsListSelected: structuredClone(productListCopy) }));
   }
 
   // Close delete product modal
@@ -267,8 +281,8 @@ export class MyListComponent {
   }
 
   cleanList(): void {
-    this.products = [];
-    this.dataSource = new MatTableDataSource(this.products);
+    this.store.dispatch(update({productsListSelected: structuredClone([])}));
+    this.dataSource = new MatTableDataSource(this.productList);
     this.isShowModalCleanList = false;
     this.indexLastProductSelected = null;
     this.indexProduct = null;

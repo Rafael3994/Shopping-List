@@ -12,113 +12,6 @@ export interface Card {
   text: string;
 }
 
-const products: ProductDTO[] = [
-  {
-    id: 1,
-    isChecked: false,
-    delete: 'delete',
-    name: 'Leche Semidesnatada',
-    category: Categories.Dairy,
-    brand: 'Mercadona',
-    price: 1.20,
-    units: 0,
-    formatSize: 'Pack 6u.',
-    marked: 'Mercadona',
-    image: '',
-  },
-  {
-    id: 2,
-    isChecked: false,
-    delete: 'delete',
-    name: 'Pan de Molde Integral',
-    category: Categories.CerealsSugarAndSweets,
-    brand: 'Hacendado',
-    price: 6.99,
-    units: 0,
-    formatSize: '',
-    marked: '',
-    image: '',
-  },
-  {
-    id: 3,
-    isChecked: false,
-    delete: 'delete',
-    name: 'Arroz Basmati',
-    category: Categories.CerealsSugarAndSweets,
-    brand: 'Hacendado',
-    price: 2.00,
-    units: 0,
-    formatSize: '',
-    marked: 'Mercadona',
-    image: '',
-  },
-  {
-    id: 4,
-    isChecked: false,
-    delete: 'delete',
-    name: 'Atun en Lata',
-    category: Categories.MeatFishAndEggs,
-    brand: 'Nixe',
-    price: 0.90,
-    units: 0,
-    formatSize: '',
-    marked: '',
-    image: '',
-  },
-  {
-    id: 5,
-    isChecked: false,
-    delete: 'delete',
-    name: 'Yogur Natural',
-    category: Categories.Dairy,
-    brand: 'Hacendado',
-    price: 0.80,
-    units: 0,
-    formatSize: '',
-    marked: '',
-    image: '',
-  },
-  {
-    id: 6,
-    isChecked: false,
-    delete: 'delete',
-    name: 'Spaghetti',
-    category: Categories.CerealsSugarAndSweets,
-    brand: 'Hacendado',
-    price: 1.00,
-    units: 0,
-    formatSize: '',
-    marked: '',
-    image: '',
-  },
-  {
-    id: 7,
-    isChecked: false,
-    delete: 'delete',
-    name: 'Patatas Fritas',
-    category: Categories.Vegetables,
-    brand: 'Torres',
-    price: 1.80,
-    units: 0,
-    formatSize: '',
-    marked: 'Mercadona',
-    image: '',
-  },
-  {
-    id: 8,
-    isChecked: false,
-    delete: 'delete',
-    name: 'Agua Mineral',
-    category: Categories.NaturalProducts,
-    brand: 'Hacendado',
-    price: 3.15,
-    units: 0,
-    formatSize: '1.5L',
-    marked: 'Mercadona',
-    image: '',
-  },
-]
-
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -132,15 +25,132 @@ export class ProductsComponent implements OnInit {
   categories = Categories;
   obs: Observable<any>;
   columns: number;
-  list: ProductDTO[] = [];
   valueFilterText: string = '';
   valueFilterCategory: string = '';
-  dataSource: MatTableDataSource<ProductDTO> = new MatTableDataSource<ProductDTO>(products);
+  products: ProductDTO[] = [
+    {
+      id: 1,
+      isChecked: false,
+      delete: 'delete',
+      name: 'Leche Semidesnatada',
+      category: Categories.Dairy,
+      brand: 'Mercadona',
+      price: 1.20,
+      units: 0,
+      formatSize: 'Pack 6u.',
+      marked: 'Mercadona',
+      image: '',
+    },
+    {
+      id: 2,
+      isChecked: false,
+      delete: 'delete',
+      name: 'Pan de Molde Integral',
+      category: Categories.CerealsSugarAndSweets,
+      brand: 'Hacendado',
+      price: 6.99,
+      units: 0,
+      formatSize: '',
+      marked: '',
+      image: '',
+    },
+    {
+      id: 3,
+      isChecked: false,
+      delete: 'delete',
+      name: 'Arroz Basmati',
+      category: Categories.CerealsSugarAndSweets,
+      brand: 'Hacendado',
+      price: 2.00,
+      units: 0,
+      formatSize: '',
+      marked: 'Mercadona',
+      image: '',
+    },
+    {
+      id: 4,
+      isChecked: false,
+      delete: 'delete',
+      name: 'Atun en Lata',
+      category: Categories.MeatFishAndEggs,
+      brand: 'Nixe',
+      price: 0.90,
+      units: 0,
+      formatSize: '',
+      marked: '',
+      image: '',
+    },
+    {
+      id: 5,
+      isChecked: false,
+      delete: 'delete',
+      name: 'Yogur Natural',
+      category: Categories.Dairy,
+      brand: 'Hacendado',
+      price: 0.80,
+      units: 0,
+      formatSize: '',
+      marked: '',
+      image: '',
+    },
+    {
+      id: 6,
+      isChecked: false,
+      delete: 'delete',
+      name: 'Spaghetti',
+      category: Categories.CerealsSugarAndSweets,
+      brand: 'Hacendado',
+      price: 1.00,
+      units: 0,
+      formatSize: '',
+      marked: '',
+      image: '',
+    },
+    {
+      id: 7,
+      isChecked: false,
+      delete: 'delete',
+      name: 'Patatas Fritas',
+      category: Categories.Vegetables,
+      brand: 'Torres',
+      price: 1.80,
+      units: 0,
+      formatSize: '',
+      marked: 'Mercadona',
+      image: '',
+    },
+    {
+      id: 8,
+      isChecked: false,
+      delete: 'delete',
+      name: 'Agua Mineral',
+      category: Categories.NaturalProducts,
+      brand: 'Hacendado',
+      price: 3.15,
+      units: 0,
+      formatSize: '1.5L',
+      marked: 'Mercadona',
+      image: '',
+    },
+  ]
+  dataSource: MatTableDataSource<ProductDTO> = new MatTableDataSource<ProductDTO>(this.products);
   
   productsListSelected$: Observable<ProductDTO[]>;
+  productList: ProductDTO[] = [];
 
   constructor(private changeDetectorRef: ChangeDetectorRef, private store: Store<{ productsListSelected: ProductDTO[] }>) {
     this.productsListSelected$ = store.select('productsListSelected');
+    this.productsListSelected$.subscribe(res => this.productList = structuredClone(res));
+    this.synchronizeProducts();
+  }
+
+  synchronizeProducts () {
+    this.productList.map((productList) => {
+      const index = this.products.findIndex((product) => product.id === productList.id);
+      if (index === -1) return;
+      this.products[index] = structuredClone(productList);
+    });
+    this.dataSource = new MatTableDataSource<ProductDTO>(this.products);
   }
 
   ngOnInit() {
@@ -222,25 +232,25 @@ export class ProductsComponent implements OnInit {
     productSelected.units++;
     // If the product is not in the list add
     // If exist modify the product
-    const indexProduct = this.list.findIndex(product => product.id === productSelected.id);
+    const indexProduct = this.productList.findIndex(product => product.id === productSelected.id);
     if (!(indexProduct > -1)) {
-      this.list.push(productSelected);
+      this.productList.push(productSelected);
     } else {
-      this.list[indexProduct].units = productSelected.units;
+      this.productList[indexProduct].units = productSelected.units;
     }
-    this.store.dispatch(update({productsListSelected: structuredClone(this.list)}));
+    this.store.dispatch(update({productsListSelected: structuredClone(this.productList)}));
   }
 
   restProductToTheList(productSelected: ProductDTO) {
     productSelected.units--;
     // If the units of the product is 0 remove from de list
     // If not modify the product
-    const indexProduct = this.list.findIndex(product => product.id === productSelected.id);
+    const indexProduct = this.productList.findIndex(product => product.id === productSelected.id);
     if (productSelected.units === 0) {
-      this.list.splice(indexProduct, 1)
+      this.productList.splice(indexProduct, 1)
     } else {
-      this.list[indexProduct].units = productSelected.units;
+      this.productList[indexProduct].units = productSelected.units;
     }
-    this.store.dispatch(update({productsListSelected: structuredClone(this.list)}));    
+    this.store.dispatch(update({productsListSelected: structuredClone(this.productList)}));  
   }
 }
