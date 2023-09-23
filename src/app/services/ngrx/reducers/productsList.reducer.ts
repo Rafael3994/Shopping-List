@@ -1,10 +1,13 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, createSelector } from '@ngrx/store';
 import { update, reset } from './../actions/productsList.actions';
+import { Categories, ProductDTO } from 'src/app/modules/products/product.DTO';
 
-export const initialState = 0;
+export const initialState: ProductDTO[] = [];
 
 export const productListReducer = createReducer(
   initialState,
-  on(update, (state) => state + 1),
-  on(reset, (state) => 0)
+  on(update, (state, { productsListSelected }) => {
+  return productsListSelected;
+}),
+  on(reset, (state) => [])
 );

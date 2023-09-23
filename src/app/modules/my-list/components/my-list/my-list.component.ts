@@ -3,6 +3,9 @@ import { Categories, ProductDTO } from 'src/app/modules/products/product.DTO';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { update } from 'src/app/services/ngrx/actions/productsList.actions';
 
 @Component({
   selector: 'app-my-list',
@@ -23,6 +26,8 @@ export class MyListComponent {
   itemSelect: ProductDTO | null = null;
   totalAmount: number = 0;
   isHoverBtnRest: boolean = false;
+  productsListSelected$: Observable<ProductDTO[]>;
+  productList: ProductDTO[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('empTbSort') empTbSort = new MatSort();
@@ -31,8 +36,10 @@ export class MyListComponent {
   ngAfterViewInit() {
     this.dataSource.sort = this.empTbSort;
   }
-
-  constructor() {
+  
+  constructor(private store: Store<{ productsListSelected: ProductDTO[] }>) {
+    this.productsListSelected$ = store.select('productsListSelected');
+    this.productsListSelected$.subscribe(res => this.productList = structuredClone(res));
     this.products = [
       {
         id: 0,
@@ -142,17 +149,17 @@ export class MyListComponent {
 
     this.totalAmount = +this.sumAmount().toFixed(2);
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(this.products);
+    this.dataSource = new MatTableDataSource(this.productList);
   }
 
   showModalProductDetails(event: any, item?: ProductDTO) {
     event.stopPropagation();
-    this.itemSelect = item!;    
+    this.itemSelect = item!;
     this.isShowModalProductDetails = !this.isShowModalProductDetails;
   }
 
   sumAmount(): number {
-    return this.products.reduce((amount: number, product: ProductDTO) => {
+    return this.productList.reduce((amount: number, product: ProductDTO) => {
       const units = product.units ?? 1
       return amount + (product!.price * units)
     }, 0)
@@ -192,21 +199,21 @@ export class MyListComponent {
 
   // Delete Product
   deleteProduct(): void {
-      this.products.splice(this.products.findIndex((product) => product.id === this.indexProduct), 1);
-      this.dataSource = new MatTableDataSource(this.products);
-      this.totalAmount = +this.sumAmount().toFixed(2);
-      this.closeDeleteProductModal();
+    this.productList.splice(this.productList.findIndex((product) => product.id === this.indexProduct), 1);
+    this.dataSource = new MatTableDataSource(this.productList);
+    this.totalAmount = +this.sumAmount().toFixed(2);
+    this.closeDeleteProductModal();
 
-      // Are there some isChecked in false?
-    const isCheckFalse = this.products.some((item: ProductDTO) => {
+    // Are there some isChecked in false?
+    const isCheckFalse = this.productList.some((item: ProductDTO) => {
       if (!item.isChecked) {
         return true;
       } else {
         return false;
       }
     });
-    
-    if(!isCheckFalse) {
+
+    if (!isCheckFalse) {
       this.isShowModalCleanList = true;
     }
   }
@@ -216,12 +223,12 @@ export class MyListComponent {
     this.indexProduct = index;
 
     // I make this because there are a delay to change
-    const realCheckBox = !this.products.find((product) => product.id === index)?.isChecked
+    const realCheckBox = !this.productList.find((product) => product.id === index)?.isChecked
     // If is check save the last index product selected
-    if(realCheckBox) this.indexLastProductSelected = index;
-    
+    if (realCheckBox) this.indexLastProductSelected = index;
+
     // Are there some isChecked in false?
-    const isCheckFalse = this.products.some((item: ProductDTO) => {
+    const isCheckFalse = this.productList.some((item: ProductDTO) => {
       if (item.id === index && !realCheckBox) {
         return true;
       }
@@ -230,8 +237,7 @@ export class MyListComponent {
       }
       return;
     });
-    
-    if(!isCheckFalse) {
+    if (!isCheckFalse) {
       this.isShowModalCleanList = true;
     }
   }
@@ -245,9 +251,9 @@ export class MyListComponent {
   }
 
   // Close delete product modal
-  closeCleanListModal(): void {   
+  closeCleanListModal(): void {
     const productFound = this.products[this.products.findIndex((product) => product.id === this.indexLastProductSelected)];
-    if(productFound) productFound.isChecked = false;
+    if (productFound) productFound.isChecked = false;
 
     if (!this.isShowModalCleanList && !this.isShowModalDeleteProduct) {
       this.indexProduct = null;
@@ -271,7 +277,7 @@ export class MyListComponent {
   closeAllModals(): void {
     this.closeCleanListModal();
     this.closeProductDetailsModal();
-    this.closeDeleteProductModal(); 
+    this.closeDeleteProductModal();
   }
 
   // Filter products

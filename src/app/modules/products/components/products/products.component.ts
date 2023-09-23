@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { update } from './../../../../services/ngrx/actions/productsList.actions';
 import { Categories, ProductDTO as ProductDTO } from '../../product.DTO';
 
 export interface Card {
@@ -135,8 +137,10 @@ export class ProductsComponent implements OnInit {
   valueFilterCategory: string = '';
   dataSource: MatTableDataSource<ProductDTO> = new MatTableDataSource<ProductDTO>(products);
   
+  productsListSelected$: Observable<ProductDTO[]>;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private changeDetectorRef: ChangeDetectorRef, private store: Store<{ productsListSelected: ProductDTO[] }>) {
+    this.productsListSelected$ = store.select('productsListSelected');
   }
 
   ngOnInit() {
@@ -224,6 +228,7 @@ export class ProductsComponent implements OnInit {
     } else {
       this.list[indexProduct].units = productSelected.units;
     }
+    this.store.dispatch(update({productsListSelected: structuredClone(this.list)}));
   }
 
   restProductToTheList(productSelected: ProductDTO) {
@@ -235,6 +240,7 @@ export class ProductsComponent implements OnInit {
       this.list.splice(indexProduct, 1)
     } else {
       this.list[indexProduct].units = productSelected.units;
-    }    
+    }
+    this.store.dispatch(update({productsListSelected: structuredClone(this.list)}));    
   }
 }

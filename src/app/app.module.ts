@@ -5,6 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// Import Ngrx
+import { StoreModule } from '@ngrx/store';
+import { productListReducer } from './services/ngrx/reducers/productsList.reducer';
+
 // Import modules
 import { AngularMaterialModule } from './modules/angular-material/angular-material.module';
 
@@ -18,8 +22,9 @@ import { MyListModule } from './modules/my-list/my-list.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot({ productsListSelected: productListReducer }),
     AngularMaterialModule,
-    MyListModule
+    // MyListModule
   ],
   providers: [],
   bootstrap: [AppComponent],
