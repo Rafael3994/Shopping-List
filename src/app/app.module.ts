@@ -6,15 +6,20 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Import Ngrx
-import { StoreModule } from '@ngrx/store';
+import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { productListReducer } from './services/ngrx/reducers/productsList.reducer';
+import { localStorageSync } from 'ngrx-store-localstorage';
 
 // Import modules
 import { AngularMaterialModule } from './modules/angular-material/angular-material.module';
 
 // Import components
 import { BaseComponent } from './components/base/base.component';
-import { MyListModule } from './modules/my-list/my-list.module';
+
+export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+  return localStorageSync({keys: ['productsListSelected']})(reducer);
+}
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 @NgModule({
   declarations: [AppComponent, BaseComponent],
@@ -22,9 +27,8 @@ import { MyListModule } from './modules/my-list/my-list.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({ productsListSelected: productListReducer }),
+    StoreModule.forRoot({ productsListSelected: productListReducer }, { metaReducers }),
     AngularMaterialModule,
-    // MyListModule
   ],
   providers: [],
   bootstrap: [AppComponent],

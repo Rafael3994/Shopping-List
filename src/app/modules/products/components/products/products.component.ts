@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { update } from './../../../../services/ngrx/actions/productsList.actions';
 import { Categories, ProductDTO as ProductDTO } from '../../product.DTO';
+import { getLocalStogare } from 'src/app/services/getLocalStorage';
 
 export interface Card {
   title: string;
@@ -139,6 +140,8 @@ export class ProductsComponent implements OnInit {
   productList: ProductDTO[] = [];
 
   constructor(private changeDetectorRef: ChangeDetectorRef, private store: Store<{ productsListSelected: ProductDTO[] }>) {
+    const infoLocalStorge = getLocalStogare();
+    if (infoLocalStorge) store.dispatch(update({productsListSelected: structuredClone(infoLocalStorge)}));
     this.productsListSelected$ = store.select('productsListSelected');
     this.productsListSelected$.subscribe(res => this.productList = structuredClone(res));
     this.synchronizeProducts();

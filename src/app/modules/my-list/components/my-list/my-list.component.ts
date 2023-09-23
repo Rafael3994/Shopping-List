@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { update } from 'src/app/services/ngrx/actions/productsList.actions';
+import { getLocalStogare } from 'src/app/services/getLocalStorage';
 
 @Component({
   selector: 'app-my-list',
@@ -38,6 +39,8 @@ export class MyListComponent {
   }
 
   constructor(private store: Store<{ productsListSelected: ProductDTO[] }>) {
+    const infoLocalStorge = getLocalStogare();
+    if(infoLocalStorge) store.dispatch(update({productsListSelected: structuredClone(infoLocalStorge)}));
     this.productsListSelected$ = store.select('productsListSelected');
     this.productsListSelected$.subscribe(res => this.productList = structuredClone(res));
     this.products = [
