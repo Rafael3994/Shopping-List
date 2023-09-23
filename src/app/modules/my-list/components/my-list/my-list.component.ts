@@ -266,13 +266,16 @@ export class MyListComponent {
 
   // Close delete product modal
   closeCleanListModal(): void {
-    const productFound = this.products[this.products.findIndex((product) => product.id === this.indexLastProductSelected)];
-    if (productFound) productFound.isChecked = false;
+    const index = this.productList.findIndex((product) => product.id === this.indexLastProductSelected);
+    if (index === -1) return;
+    this.productList[index].isChecked = false;
 
     if (!this.isShowModalCleanList && !this.isShowModalDeleteProduct) {
       this.indexProduct = null;
     }
     this.isShowModalCleanList = false;
+    this.dataSource = new MatTableDataSource(this.productList);
+    this.store.dispatch(update({productsListSelected: structuredClone(this.productList)}));
   }
 
   closeProductDetailsModal(): void {
