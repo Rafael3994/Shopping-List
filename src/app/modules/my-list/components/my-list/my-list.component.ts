@@ -267,20 +267,6 @@ export class MyListComponent {
     this.isShowModalDeleteProduct = false;
   }
 
-  // Close delete product modal
-  closeCleanListModal(): void {
-    const index = this.productList.findIndex((product) => product.id === this.indexLastProductSelected);
-    if (index === -1) return;
-    this.productList[index].isChecked = false;
-
-    if (!this.isShowModalCleanList && !this.isShowModalDeleteProduct) {
-      this.indexProduct = null;
-    }
-    this.isShowModalCleanList = false;
-    this.dataSource = new MatTableDataSource(this.productList);
-    this.store.dispatch(update({productsListSelected: structuredClone(this.productList)}));
-  }
-
   closeProductDetailsModal(): void {
     this.itemSelect = null;
     this.isShowModalProductDetails = false;
@@ -294,6 +280,20 @@ export class MyListComponent {
     this.indexLastProductSelected = null;
     this.indexProduct = null;
   }
+
+     // Close delete product modal
+     closeCleanListModal(): void {
+      const index = this.productList.findIndex((product) => product.id === this.indexLastProductSelected);
+      if (index === -1) return;
+      this.productList[index].isChecked = false;
+  
+      if (!this.isShowModalCleanList && !this.isShowModalDeleteProduct) {
+        this.indexProduct = null;
+      }
+      this.isShowModalCleanList = false;
+      this.dataSource = new MatTableDataSource(this.productList);
+      this.store.dispatch(update({productsListSelected: structuredClone(this.productList)}));
+    }
 
   closeAllModals(): void {
     this.closeCleanListModal();

@@ -123,19 +123,8 @@
     </div>
   </div>
   <!-- MODAL CLEAN LIST -->
-  <div *ngIf="isShowModalCleanList" [ngClass]="'popUp'">
-    <div [style]="'margin: 0 1em'">
-      <h3 [ngStyle]="{'display': 'flex', 'justifyContent': 'end'}">
-        <span (click)="closeCleanListModal()" [style]="{'cursor': 'pointer'}">X</span>
-      </h3>
-      <h3 [style]="{margin:'0'}">You are completed the list.</h3>
-      <h3 [style]="{margin:'0'}">Do you want to reset it?</h3>
-      <div [style]="{marginTop: '1.8rem', display: 'flex', justifyContent: 'space-evenly'}">
-        <button [className]="'button-popUp'" (click)="cleanList()">YES</button>
-        <button [className]="'button-popUp'" (click)="closeCleanListModal()">NO</button>
-      </div>
-    </div>
-  </div>
+  <app-modal-clean-list [isShowModalCleanList]="isShowModalCleanList" (eventCloseCleanListModal)="closeCleanListModal()"
+    (eventCleanList)="cleanList()"></app-modal-clean-list>
   <!-- MODAL PRODUCT DETAIL -->
   <div *ngIf="isShowModalProductDetails" [ngClass]="'product-details'">
     <div [style]="'margin: 0 1em'">
@@ -182,11 +171,10 @@
         <div [style]="{display: 'flex', justifyContent: 'space-between'}">
           <button (click)="sumUnit()" [className]="'button-add'" [style]="{marginRight: '1.2rem'}">+</button>
           <div [className]="'input-units'">{{itemSelect?.units}}</div>
-          <button  [disabled]="itemSelect!.units! <= 1" (click)="restUnit()"  
-          [ngClass]="itemSelect!.units! <= 1 ? 'button-rest-disable' : isHoverBtnRest ? 'button-rest-hover' : 'button-rest'"
-          (mouseover)="isHoverBtnRest=true"
-          (mouseleave)="isHoverBtnRest=false"
-          [style]="{marginLeft: '1.2rem'}">-</button>
+          <button [disabled]="itemSelect!.units! <= 1" (click)="restUnit()"
+            [ngClass]="itemSelect!.units! <= 1 ? 'button-rest-disable' : isHoverBtnRest ? 'button-rest-hover' : 'button-rest'"
+            (mouseover)="isHoverBtnRest=true" (mouseleave)="isHoverBtnRest=false"
+            [style]="{marginLeft: '1.2rem'}">-</button>
         </div>
       </div>
     </div>

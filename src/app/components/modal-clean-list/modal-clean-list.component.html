@@ -1,0 +1,13 @@
+<div *ngIf="isShowModalCleanList" [ngClass]="'popUp'">
+    <div [style]="'margin: 0 1em'">
+      <h3 [ngStyle]="{'display': 'flex', 'justifyContent': 'end'}">
+        <span (click)="closeCleanListModal()" [style]="{'cursor': 'pointer'}">X</span>
+      </h3>
+      <h3 [style]="{margin:'0'}">You are completed the list.</h3>
+      <h3 [style]="{margin:'0'}">Do you want to reset it?</h3>
+      <div [style]="{marginTop: '1.8rem', display: 'flex', justifyContent: 'space-evenly'}">
+        <button [className]="'button-popUp'" (click)="cleanList()">YES</button>
+        <button [className]="'button-popUp'" (click)="closeCleanListModal()">NO</button>
+      </div>
+    </div>
+  </div>
