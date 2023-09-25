@@ -289,6 +289,7 @@ export class MyListComponent {
   cleanList(): void {
     this.store.dispatch(update({productsListSelected: structuredClone([])}));
     this.dataSource = new MatTableDataSource(this.productList);
+    this.totalAmount = +this.sumAmount().toFixed(2);
     this.isShowModalCleanList = false;
     this.indexLastProductSelected = null;
     this.indexProduct = null;
