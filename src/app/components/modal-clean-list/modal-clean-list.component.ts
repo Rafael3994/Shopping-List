@@ -12,19 +12,14 @@ import { update } from 'src/app/services/ngrx/actions/productsList.actions';
 export class ModalCleanListComponent implements OnInit {
 
   @Input() isShowModalCleanList: boolean;
-  @Input() isShowModalDeleteProduct: boolean;
-  @Input() productList: ProductDTO[];
-  @Input() indexLastProductSelected: number;
-  @Input() indexProduct: number | null;
-  @Input() dataSource: MatTableDataSource<ProductDTO>;
 
   @Output() eventCloseCleanListModal = new EventEmitter();
   @Output() eventCleanList = new EventEmitter();
 
-  constructor(private store: Store<{ productsListSelected: ProductDTO[] }>) { }
+  constructor() { }
 
   closeCleanListModal() {
-      this.eventCloseCleanListModal.emit();
+    this.eventCloseCleanListModal.emit();
   }
   cleanList() {
     this.eventCleanList.emit();

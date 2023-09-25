@@ -26,7 +26,6 @@ export class MyListComponent {
   valueFilterText: string = '';
   itemSelect: ProductDTO | null = null;
   totalAmount: number = 0;
-  isHoverBtnRest: boolean = false;
   productsListSelected$: Observable<ProductDTO[]>;
   productList: ProductDTO[] = [];
 
@@ -310,6 +309,4 @@ export class MyListComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-
-  styles = {}
 }
