@@ -87,7 +87,8 @@
           <ng-container matColumnDef="delete">
             <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef [style]="{ fontSize: '1.2em'}"></th>
             <td mat-cell *matCellDef="let row; let index = index;" class="status">
-              <mat-icon (click)="showDeleleProductModal($event, row.isChecked, row.id)"
+              <mat-icon 
+              (click)="showDeleleProductModal($event, row.isChecked, row.id)"
                 [ngStyle]="row.isChecked ? {color: '#A2A2A2'} : {color: '#707070', cursor: 'pointer'}">
                 {{row.delete}}
               </mat-icon>
@@ -110,18 +111,10 @@
     </div>
   </div>
   <!-- MODAL DELETE PRODUCT -->
-  <div *ngIf="isShowModalDeleteProduct" [ngClass]="'popUp'">
-    <div [style]="'margin: 0 1em'">
-      <h3 [ngStyle]="{'display': 'flex', 'justifyContent': 'end'}">
-        <span (click)="closeDeleteProductModal()" [style]="{'cursor': 'pointer'}">X</span>
-      </h3>
-      <h3>Are you sure you want to remove this item from your list?</h3>
-      <div [style]="{marginTop: '1.8rem', display: 'flex', justifyContent: 'space-evenly'}">
-        <button [className]="'button-popUp'" (click)="deleteProduct()">YES</button>
-        <button [className]="'button-popUp'" (click)="closeDeleteProductModal()">NO</button>
-      </div>
-    </div>
-  </div>
+  <app-modal-delete-product [isShowModalDeleteProduct]="isShowModalDeleteProduct" 
+    (eventCloseDeleteModal)="closeDeleteProductModal()"
+    (eventDeleteProduct)="deleteProduct()"
+    ></app-modal-delete-product>
   <!-- MODAL CLEAN LIST -->
   <app-modal-clean-list [isShowModalCleanList]="isShowModalCleanList" (eventCloseCleanListModal)="closeCleanListModal()"
     (eventCleanList)="cleanList()"></app-modal-clean-list>

@@ -6,10 +6,11 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { FormsModule } from '@angular/forms';
 import { ModalCleanListComponent } from 'src/app/components/modal-clean-list/modal-clean-list.component';
 import { ModalDetailsProductComponent } from 'src/app/components/modal-details-product/modal-details-product.component';
+import { ModalDeleteProductComponent } from 'src/app/components/modal-delete-product/modal-delete-product.component';
 
 @NgModule({
   declarations: [
-    MyListComponent, ModalCleanListComponent, ModalDetailsProductComponent,
+    MyListComponent, ModalCleanListComponent, ModalDetailsProductComponent, ModalDeleteProductComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,12 @@
+<div *ngIf="isShowModalDeleteProduct" [ngClass]="'popUp'">
+    <div [style]="'margin: 0 1em'">
+      <h3 [ngStyle]="{'display': 'flex', 'justifyContent': 'end'}">
+        <span (click)="closeDeleteProductModal()" [style]="{'cursor': 'pointer'}">X</span>
+      </h3>
+      <h3>Are you sure you want to remove this item from your list?</h3>
+      <div [style]="{marginTop: '1.8rem', display: 'flex', justifyContent: 'space-evenly'}">
+        <button [className]="'button-popUp'" (click)="deleteProduct()">YES</button>
+        <button [className]="'button-popUp'" (click)="closeDeleteProductModal()">NO</button>
+      </div>
+    </div>
+</div>

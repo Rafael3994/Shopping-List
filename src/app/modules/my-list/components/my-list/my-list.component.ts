@@ -266,6 +266,7 @@ export class MyListComponent {
     this.isShowModalDeleteProduct = false;
   }
 
+  // Close detail product modal
   closeProductDetailsModal(): void {
     this.itemSelect = null;
     this.isShowModalProductDetails = false;
