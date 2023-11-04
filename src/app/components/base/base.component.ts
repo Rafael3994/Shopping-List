@@ -17,9 +17,9 @@ width: { [klass: string]: any; }|null|undefined;
   };
 
   lenguages = [
-    { lenguage: 'Spain', flag: './../assets/espanya_flag.png' },
-    { lenguage: 'English', flag: './../assets/england_flag.png' },
-    { lenguage: 'Russian', flag: './../assets/russian_flag.png' },
+    { lenguage: 'Spain', flag: './../assets/flags/espanya_flag.png' },
+    { lenguage: 'English', flag: './../assets/flags/england_flag.png' },
+    { lenguage: 'Russian', flag: './../assets/flags/russian_flag.png' },
   ];
   lenghtLenguage = 0
 
@@ -116,9 +116,12 @@ width: { [klass: string]: any; }|null|undefined;
         color: '#d9d9d9',
       },
       flag: {
+        marginLeft: '1rem',
+        border: '1px solid grey',
         width: '20%',
       },
       flagOption: {
+        border: '1px solid grey',
         width: '10%',
         marginRight: '10%',
       },
