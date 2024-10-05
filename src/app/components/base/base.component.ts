@@ -19,7 +19,6 @@ width: { [klass: string]: any; }|null|undefined;
   lenguages = [
     { lenguage: 'Spain', flag: './../assets/flags/espanya_flag.png' },
     { lenguage: 'English', flag: './../assets/flags/england_flag.png' },
-    { lenguage: 'Russian', flag: './../assets/flags/russian_flag.png' },
   ];
   lenghtLenguage = 0
 
