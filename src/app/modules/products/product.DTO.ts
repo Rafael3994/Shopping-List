@@ -50,9 +50,9 @@ export const productsDummy: ProductDTO[] = [
         brand: 'Hacendado',
         price: 1.20,
         units: 0,
-        formatSize: 'Pack 6u.',
+        formatSize: '1u.',
         marked: 'Mercadona',
-        image: '',
+        image: 'assets/photos/milk.webp',
     },
     {
         id: 2,
@@ -65,7 +65,7 @@ export const productsDummy: ProductDTO[] = [
         units: 0,
         formatSize: '1u.',
         marked: '',
-        image: '',
+        image: 'assets/photos/bread.webp',
     },
     {
         id: 3,
@@ -78,7 +78,7 @@ export const productsDummy: ProductDTO[] = [
         units: 0,
         formatSize: '1u.',
         marked: 'Mercadona',
-        image: '',
+        image: 'assets/photos/rice.webp',
     },
     {
         id: 4,
@@ -91,7 +91,7 @@ export const productsDummy: ProductDTO[] = [
         units: 0,
         formatSize: '1u.',
         marked: '',
-        image: '',
+        image: 'assets/photos/tuna.webp',
     },
     {
         id: 5,
@@ -104,7 +104,7 @@ export const productsDummy: ProductDTO[] = [
         units: 0,
         formatSize: 'Pack 6u.',
         marked: '',
-        image: '',
+        image: 'assets/photos/yoghurt.webp',
     },
     {
         id: 6,
@@ -117,7 +117,7 @@ export const productsDummy: ProductDTO[] = [
         units: 0,
         formatSize: '1u.',
         marked: '',
-        image: '',
+        image: 'assets/photos/spaghetti.webp',
     },
     {
         id: 7,
@@ -130,7 +130,7 @@ export const productsDummy: ProductDTO[] = [
         units: 0,
         formatSize: '1u.',
         marked: 'Mercadona',
-        image: '',
+        image: 'assets/photos/potato.webp',
     },
     {
         id: 8,
@@ -143,6 +143,6 @@ export const productsDummy: ProductDTO[] = [
         units: 0,
         formatSize: '1.5L',
         marked: 'Mercadona',
-        image: '',
+        image: 'assets/photos/water.webp',
     },
 ]

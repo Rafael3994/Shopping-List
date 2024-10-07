@@ -6,7 +6,9 @@
     <div [style]="{ display: 'flex', height: '19.5rem'}">
       <div [style]="{width: '17rem'}">
         <div
-          [style]="{marginLeft: '1rem', backgroundImage: 'url(./../../../../../../assets/img-product.jpeg)', border: '1px #707070 solid', width: '13rem', height: '13rem', borderRadius: '1rem'}">
+          [style]="{marginLeft: '1rem', backgrorder: '1px #707070 solid', width: '13rem', height: '13rem', borderRadius: '1rem'}">
+          <img src="{{itemSelect.image}}" [alt]="'img_'+(itemSelect.name)"
+            style="width: 100%; height: 100%; border-radius: 1rem;">
         </div>
       </div>
       <div [style]="{width: '13rem', fontWight: 'bold'}">
