@@ -15,9 +15,10 @@ import { AngularMaterialModule } from './modules/angular-material/angular-materi
 
 // Import components
 import { BaseComponent } from './components/base/base.component';
+import { LOCAL_STORAGE_KEY } from './services/getLocalStorage';
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({keys: ['productsListSelected']})(reducer);
+  return localStorageSync({keys: [LOCAL_STORAGE_KEY]})(reducer);
 }
 const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 

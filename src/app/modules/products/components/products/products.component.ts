@@ -4,8 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { update } from './../../../../services/ngrx/actions/productsList.actions';
-import { Categories, ProductDTO as ProductDTO } from '../../product.DTO';
-import { getLocalStogare } from 'src/app/services/getLocalStorage';
+import { Categories, ProductDTO as ProductDTO, productsDummy } from '../../product.DTO';
+import { getLocalStogare, LOCAL_STORAGE_KEY } from 'src/app/services/getLocalStorage';
 
 export interface Card {
   title: string;
@@ -23,131 +23,27 @@ export class ProductsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('input') input: any;
 
-  categories = Categories;
   obs: Observable<any>;
   columns: number;
-  valueFilterText: string = '';
-  valueFilterCategory: string = '';
-  products: ProductDTO[] = [
-    {
-      id: 1,
-      isChecked: false,
-      delete: 'delete',
-      name: 'Leche Semidesnatada',
-      category: Categories.Dairy,
-      brand: 'Mercadona',
-      price: 1.20,
-      units: 0,
-      formatSize: 'Pack 6u.',
-      marked: 'Mercadona',
-      image: '',
-    },
-    {
-      id: 2,
-      isChecked: false,
-      delete: 'delete',
-      name: 'Pan de Molde Integral',
-      category: Categories.CerealsSugarAndSweets,
-      brand: 'Hacendado',
-      price: 6.99,
-      units: 0,
-      formatSize: '',
-      marked: '',
-      image: '',
-    },
-    {
-      id: 3,
-      isChecked: false,
-      delete: 'delete',
-      name: 'Arroz Basmati',
-      category: Categories.CerealsSugarAndSweets,
-      brand: 'Hacendado',
-      price: 2.00,
-      units: 0,
-      formatSize: '',
-      marked: 'Mercadona',
-      image: '',
-    },
-    {
-      id: 4,
-      isChecked: false,
-      delete: 'delete',
-      name: 'Atun en Lata',
-      category: Categories.MeatFishAndEggs,
-      brand: 'Nixe',
-      price: 0.90,
-      units: 0,
-      formatSize: '',
-      marked: '',
-      image: '',
-    },
-    {
-      id: 5,
-      isChecked: false,
-      delete: 'delete',
-      name: 'Yogur Natural',
-      category: Categories.Dairy,
-      brand: 'Hacendado',
-      price: 0.80,
-      units: 0,
-      formatSize: '',
-      marked: '',
-      image: '',
-    },
-    {
-      id: 6,
-      isChecked: false,
-      delete: 'delete',
-      name: 'Spaghetti',
-      category: Categories.CerealsSugarAndSweets,
-      brand: 'Hacendado',
-      price: 1.00,
-      units: 0,
-      formatSize: '',
-      marked: '',
-      image: '',
-    },
-    {
-      id: 7,
-      isChecked: false,
-      delete: 'delete',
-      name: 'Patatas Fritas',
-      category: Categories.Vegetables,
-      brand: 'Torres',
-      price: 1.80,
-      units: 0,
-      formatSize: '',
-      marked: 'Mercadona',
-      image: '',
-    },
-    {
-      id: 8,
-      isChecked: false,
-      delete: 'delete',
-      name: 'Agua Mineral',
-      category: Categories.NaturalProducts,
-      brand: 'Hacendado',
-      price: 3.15,
-      units: 0,
-      formatSize: '1.5L',
-      marked: 'Mercadona',
-      image: '',
-    },
-  ]
+  products: ProductDTO[] = productsDummy
   dataSource: MatTableDataSource<ProductDTO> = new MatTableDataSource<ProductDTO>(this.products);
   
+  categories = Categories;
+  valueFilterText: string = '';
+  valueFilterCategory: string = '';
+
   productsListSelected$: Observable<ProductDTO[]>;
   productList: ProductDTO[] = [];
 
   constructor(private changeDetectorRef: ChangeDetectorRef, private store: Store<{ productsListSelected: ProductDTO[] }>) {
     const infoLocalStorge = getLocalStogare();
-    if (infoLocalStorge) store.dispatch(update({productsListSelected: structuredClone(infoLocalStorge)}));
-    this.productsListSelected$ = store.select('productsListSelected');
+    if (infoLocalStorge) store.dispatch(update({ productsListSelected: structuredClone(infoLocalStorge) }));
+    this.productsListSelected$ = store.select(LOCAL_STORAGE_KEY);
     this.productsListSelected$.subscribe(res => this.productList = structuredClone(res));
     this.synchronizeProducts();
   }
 
-  synchronizeProducts () {
+  synchronizeProducts() {
     this.productList.map((productList) => {
       const index = this.products.findIndex((product) => product.id === productList.id);
       if (index === -1) return;
@@ -163,7 +59,7 @@ export class ProductsComponent implements OnInit {
     this.obs = this.dataSource.connect();
 
     // Define filter
-    this.dataSource.filterPredicate = function customFilter(data , filter: string ): boolean {
+    this.dataSource.filterPredicate = function customFilter(data, filter: string): boolean {
       const filterJSON = JSON.parse(filter);
       // 1. If both are empty
       if (filterJSON.name === '' && filterJSON.category === '') return true;
@@ -178,9 +74,9 @@ export class ProductsComponent implements OnInit {
       // 4. If both have data
       if (filterJSON.name !== '' && filterJSON.category !== '') {
         if (data.category === filterJSON.category && data.name.toLowerCase().includes(filterJSON.name)) {
-            return true;
+          return true;
         }
-      }    
+      }
       return false;
     }
   }
@@ -194,20 +90,20 @@ export class ProductsComponent implements OnInit {
   // Filter products by name
   applyFilter(event: Event): void {
     this.valueFilterText = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    this.dataSource.filter = JSON.stringify({name: this.valueFilterText, category: this.valueFilterCategory})
+    this.dataSource.filter = JSON.stringify({ name: this.valueFilterText, category: this.valueFilterCategory })
 
-    if (this.dataSource.paginator) { 
+    if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
   // Filter products by category
-  changeCategoryFilter(event: {key: string, value: string}) {
+  changeCategoryFilter(event: { key: string, value: string }) {
     // Save category
-    this.valueFilterCategory = event ? event.value : '' as string;    
-    this.dataSource.filter = JSON.stringify({name: this.valueFilterText, category: this.valueFilterCategory})
+    this.valueFilterCategory = event ? event.value : '' as string;
+    this.dataSource.filter = JSON.stringify({ name: this.valueFilterText, category: this.valueFilterCategory })
 
-    if (this.dataSource.paginator) { 
+    if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
@@ -241,7 +137,7 @@ export class ProductsComponent implements OnInit {
     } else {
       this.productList[indexProduct].units = productSelected.units;
     }
-    this.store.dispatch(update({productsListSelected: structuredClone(this.productList)}));
+    this.store.dispatch(update({ productsListSelected: structuredClone(this.productList) }));
   }
 
   restProductToTheList(productSelected: ProductDTO) {
@@ -254,6 +150,6 @@ export class ProductsComponent implements OnInit {
     } else {
       this.productList[indexProduct].units = productSelected.units;
     }
-    this.store.dispatch(update({productsListSelected: structuredClone(this.productList)}));  
+    this.store.dispatch(update({ productsListSelected: structuredClone(this.productList) }));
   }
 }

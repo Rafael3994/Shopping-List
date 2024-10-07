@@ -6,23 +6,24 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { update } from 'src/app/services/ngrx/actions/productsList.actions';
-import { getLocalStogare } from 'src/app/services/getLocalStorage';
+import { getLocalStogare, LOCAL_STORAGE_KEY } from 'src/app/services/getLocalStorage';
 
 @Component({
   selector: 'app-my-list',
   templateUrl: './my-list.component.html',
   styleUrls: ['./my-list.component.scss']
 })
-
 export class MyListComponent {
   displayedColumns: string[] = ['check', 'name', 'category', 'brand', 'price', 'units', 'delete'];
   dataSource: MatTableDataSource<ProductDTO>;
   products: ProductDTO[];
+  
   isShowModalDeleteProduct: boolean = false;
   isShowModalCleanList: boolean = false;
   isShowModalProductDetails: boolean = false
   indexProduct: number | null = null;
   indexLastProductSelected: number | null = null;
+  
   valueFilterText: string = '';
   itemSelect: ProductDTO | null = null;
   totalAmount: number = 0;
@@ -39,8 +40,8 @@ export class MyListComponent {
 
   constructor(private store: Store<{ productsListSelected: ProductDTO[] }>) {
     const infoLocalStorge = getLocalStogare();
-    if(infoLocalStorge) store.dispatch(update({productsListSelected: structuredClone(infoLocalStorge)}));
-    this.productsListSelected$ = store.select('productsListSelected');
+    if (infoLocalStorge) store.dispatch(update({ productsListSelected: structuredClone(infoLocalStorge) }));
+    this.productsListSelected$ = store.select(LOCAL_STORAGE_KEY);
     this.productsListSelected$.subscribe(res => this.productList = structuredClone(res));
     this.totalAmount = +this.sumAmount().toFixed(2);
     // Assign the data to the data source for the table to render
@@ -71,7 +72,7 @@ export class MyListComponent {
         product.units = this.itemSelect!.units
       }
     });
-    this.store.dispatch(update({productsListSelected: structuredClone(this.productList)}));
+    this.store.dispatch(update({ productsListSelected: structuredClone(this.productList) }));
     this.totalAmount = +this.sumAmount().toFixed(2);
   }
 
@@ -82,7 +83,7 @@ export class MyListComponent {
         product.units = this.itemSelect!.units
       }
     });
-    this.store.dispatch(update({productsListSelected: structuredClone(this.productList)}));
+    this.store.dispatch(update({ productsListSelected: structuredClone(this.productList) }));
     this.totalAmount = +this.sumAmount().toFixed(2);
   }
 
@@ -100,7 +101,6 @@ export class MyListComponent {
     e.stopPropagation();
     if (isChecked) return;
     this.indexProduct = index;
-    // document.getElementById('container')?.addEventListener('focus', (e) => e.preventDefault());
     this.isShowModalDeleteProduct = !this.isShowModalDeleteProduct;
   }
 
@@ -167,7 +167,7 @@ export class MyListComponent {
   }
 
   cleanList(): void {
-    this.store.dispatch(update({productsListSelected: structuredClone([])}));
+    this.store.dispatch(update({ productsListSelected: structuredClone([]) }));
     this.dataSource = new MatTableDataSource(this.productList);
     this.totalAmount = +this.sumAmount().toFixed(2);
     this.isShowModalCleanList = false;
@@ -175,19 +175,19 @@ export class MyListComponent {
     this.indexProduct = null;
   }
 
-     // Close delete product modal
-     closeCleanListModal(): void {
-      const index = this.productList.findIndex((product) => product.id === this.indexLastProductSelected);
-      if (index === -1) return;
-      this.productList[index].isChecked = false;
-  
-      if (!this.isShowModalCleanList && !this.isShowModalDeleteProduct) {
-        this.indexProduct = null;
-      }
-      this.isShowModalCleanList = false;
-      this.dataSource = new MatTableDataSource(this.productList);
-      this.store.dispatch(update({productsListSelected: structuredClone(this.productList)}));
+  // Close delete product modal
+  closeCleanListModal(): void {
+    const index = this.productList.findIndex((product) => product.id === this.indexLastProductSelected);
+    if (index === -1) return;
+    this.productList[index].isChecked = false;
+
+    if (!this.isShowModalCleanList && !this.isShowModalDeleteProduct) {
+      this.indexProduct = null;
     }
+    this.isShowModalCleanList = false;
+    this.dataSource = new MatTableDataSource(this.productList);
+    this.store.dispatch(update({ productsListSelected: structuredClone(this.productList) }));
+  }
 
   closeAllModals(): void {
     this.closeCleanListModal();
