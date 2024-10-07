@@ -1,0 +1,49 @@
+{
+  "SIDE_NAV": {
+    "MY_LIST": "Mi Lista",
+    "PRODUCTS": "Productos",
+    "OPTIONS": "Opciones"
+  },
+  "LANGUAGES": {
+    "ENGLISH": "Inglés",
+    "SPANISH": "Español"
+  },
+  "PRODUCTS": {
+    "MILK": "Leche Semidesnatada",
+    "WHOLE_BREAD": "Pan de Molde Integral",
+    "BASMATI_RICE": "Arroz Basmati",
+    "TUNA": "Atún en Lata",
+    "NATURAL_YOGURT": "Yogur Natural",
+    "SPAGHETTI": "Spaghetti",
+    "POTATO_CHIPS": "Patatas Fritas",
+    "MINERAL_WATER": "Agua Mineral"
+  },
+  "PRODUCTS_ATRIBUTES": {
+    "ALL": "Todas",
+    "NAME": "Nombre",
+    "FORMAT_SIZE": "Formato",
+    "BRAND": "Marca",
+    "UNITS": "Unidad/s",
+    "PRICE": "Precio",
+    "CATEGORY": "Categoría"
+  },
+  "PRODUCTS_CATEGORIES": {
+    "HYGIENE_AND_CLEANLINESS": "Higiene y Limpieza",
+    "COSMETIC": "Cosmetica",
+    "DAIRY": "Lactios",
+    "ALCOHOL": "Alcohol",
+    "FRUITS": "Frutas",
+    "VEGETABLES": "Verduras y Hortalizas",
+    "MEAT_FISH_AND_EGGS": "Carnes, pescados y huevos",
+    "CEREALS_SUGAR_AND_SWEETS": "Patatas, legumbres, frutos secos",
+    "FATS_OIL_AND_BUTTER": "Cereales y derivados, azúcar y dulces"
+  },
+  "SEARCH_OPTION": {
+    "SEARCH_PRODUCT": "Buscar Producto",
+    "SEARCH_CATEGORY": "Buscar Categoría"
+  },
+  "OTHERS": {
+    "ADD_TO_THE_LIST": "Añadir a la lista",
+    "ITEMS_PER_PAGE": "Productos por página"
+  }
+}

@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ModalCleanListComponent } from 'src/app/components/modal-clean-list/modal-clean-list.component';
 import { ModalDetailsProductComponent } from 'src/app/components/modal-details-product/modal-details-product.component';
 import { ModalDeleteProductComponent } from 'src/app/components/modal-delete-product/modal-delete-product.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ModalDeleteProductComponent } from 'src/app/components/modal-delete-pro
     AngularMaterialModule,
     MyListRoutingModule,
     FormsModule,
+    TranslateModule,
   ],
 })
 export class MyListModule { }

@@ -29,6 +29,7 @@ export class MyListComponent {
   totalAmount: number = 0;
   productsListSelected$: Observable<ProductDTO[]>;
   productList: ProductDTO[] = [];
+  translateCategoryProducts: string = 'PRODUCTS_CATEGORIES.'
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('empTbSort') empTbSort = new MatSort();

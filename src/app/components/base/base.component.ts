@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-base',
@@ -7,31 +8,43 @@ import { Router } from '@angular/router';
   styleUrls: ['./base.component.scss'],
 })
 export class BaseComponent implements OnInit {
-width: { [klass: string]: any; }|null|undefined;
-  constructor(private router: Router) {
-    
+  width: { [klass: string]: any; } | null | undefined;
+  lenguages: any[] = [];
+  lenghtLenguage = 0
+
+  constructor(
+    private router: Router,
+    private translate: TranslateService
+  ) {
+    this.loadLanguages();
   }
 
   navigateTo(to: string) {
     this.router.navigateByUrl(`/${to}`);
   };
 
-  lenguages = [
-    { lenguage: 'Spain', flag: './../assets/flags/espanya_flag.png' },
-    { lenguage: 'English', flag: './../assets/flags/england_flag.png' },
-  ];
-  lenghtLenguage = 0
+
+  loadLanguages() {
+    this.translate.get(['LANGUAGES.SPANISH', 'LANGUAGES.ENGLISH']).subscribe(translations => {
+      this.lenguages = [
+        { lenguage: translations['LANGUAGES.SPANISH'], flag: './../assets/flags/espanya_flag.png', key: 'es' },
+        { lenguage: translations['LANGUAGES.ENGLISH'], flag: './../assets/flags/england_flag.png', key: 'en' }
+      ];
+    });
+  }
 
   changeLenguage(value: any) {
-    this.lenguages.map((len, index) => {
-      if(len.lenguage === value) {
+    this.lenguages.forEach((len, index) => {
+      if (len.key === value) {
         this.lenghtLenguage = index;
+        this.translate.use(len.key);
+        this.loadLanguages();
         return
       }
     })
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   styles = {
     topBar: {

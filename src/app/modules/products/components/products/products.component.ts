@@ -27,15 +27,19 @@ export class ProductsComponent implements OnInit {
   columns: number;
   products: ProductDTO[] = productsDummy
   dataSource: MatTableDataSource<ProductDTO> = new MatTableDataSource<ProductDTO>(this.products);
-  
+
   categories = Categories;
   valueFilterText: string = '';
   valueFilterCategory: string = '';
+  translateCategoryProducts: string = 'PRODUCTS_CATEGORIES.'
 
   productsListSelected$: Observable<ProductDTO[]>;
   productList: ProductDTO[] = [];
 
-  constructor(private changeDetectorRef: ChangeDetectorRef, private store: Store<{ productsListSelected: ProductDTO[] }>) {
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef, 
+    private store: Store<{ productsListSelected: ProductDTO[] }>
+  ) {
     const infoLocalStorge = getLocalStogare();
     if (infoLocalStorge) store.dispatch(update({ productsListSelected: structuredClone(infoLocalStorge) }));
     this.productsListSelected$ = store.select(LOCAL_STORAGE_KEY);

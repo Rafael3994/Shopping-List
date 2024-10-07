@@ -1,0 +1,50 @@
+{
+  "SIDE_NAV": {
+    "MY_LIST": "My List",
+    "PRODUCTS": "Products",
+    "OPTIONS": "Options"
+  },
+  "LANGUAGES": {
+    "ENGLISH": "English",
+    "SPANISH": "Spanish"
+  },
+  "PRODUCTS": {
+    "MILK": "Semi-Skimmed Milk",
+    "WHOLE_BREAD": "Whole Wheat Bread",
+    "BASMATI_RICE": "Basmati Rice",
+    "TUNA": "Canned Tuna",
+    "NATURAL_YOGURT": "Natural Yogurt",
+    "SPAGHETTI": "Spaghetti",
+    "POTATO_CHIPS": "Potato Chips",
+    "MINERAL_WATER": "Mineral Water"
+  },
+  "PRODUCTS_ATRIBUTES": {
+    "ALL": "All",
+    "NAME": "Name",
+    "FORMAT_SIZE": "Format",
+    "BRAND": "Brand",
+    "UNITS": "Unit/s",
+    "PRICE": "Price",
+    "CATEGORY": "Category"
+  },
+  "PRODUCTS_CATEGORIES": {
+    "HYGIENE_AND_CLEANLINESS": "Hygiene and Cleanliness",
+    "COSMETIC": "Cosmetic",
+    "DAIRY": "Dairy",
+    "ALCOHOL": "Alcohol",
+    "FRUITS": "Fruits",
+    "VEGETABLES": "Vegetables",
+    "MEAT_FISH_AND_EGGS": "Meat, Fish and Eggs",
+    "CEREALS_SUGAR_AND_SWEETS": "Cereals, Sugar and Sweets",
+    "FATS_OIL_AND_BUTTER": "Fats, oil and butter",
+    "NATURAL_PRODUCTS": "Natural products"
+  },
+  "SEARCH_OPTION": {
+    "SEARCH_PRODUCT": "Search Product",
+    "SEARCH_CATEGORY": "Search Category"
+  },
+  "OTHERS": {
+    "ADD_TO_THE_LIST": "Add to the list",
+    "ITEMS_PER_PAGE": "Products by page"
+  }
+}

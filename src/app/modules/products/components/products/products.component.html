@@ -2,14 +2,18 @@
 <div [style]="{ width: '99.9vw', height: '80.9vh', backgoundColor: 'black' }">
   <div [style]="{backgoundColor: 'pink', width: '99.9vw', height: '80.9vh'}">
     <!-- Title -->
-    <h1 [style]="{ marginLeft: '3em', pointerEvents: 'none'}" [ngClass]="'lyrics'">Products</h1>
+    <h1 [style]="{ marginLeft: '3em', pointerEvents: 'none'}" [ngClass]="'lyrics'">
+      {{ 'SIDE_NAV.PRODUCTS' | translate}}
+    </h1>
     <!-- Container -->
     <div [id]="'container'" [style]="{display: 'flex', flexDirection: 'column', alignItems: 'center'}">
       <!-- Searchs by name -->
       <div
         [style]="{display: 'flex', width: '80%', justifyContent: 'space-between', marginLeft: '0rem', marginBottom: '1.7rem', marginTop: '1rem'}">
         <mat-form-field [ngStyle]="{textAlign: 'center'}">
-          <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">Search Product</mat-label>
+          <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">
+            {{ 'SEARCH_OPTION.SEARCH_PRODUCT' | translate}}
+          </mat-label>
           <input matInput (keyup)="applyFilter($event)" #input [(ngModel)]="valueFilterText">
           <button *ngIf="valueFilterText" matSuffix mat-icon-button aria-label="Clear"
             (click)="cleanInputFilter($event)">
@@ -17,11 +21,14 @@
           </button>
         </mat-form-field>
         <!-- Filter by category -->
-        <mat-form-field [ngStyle]="{width: '12rem', textAlign: 'center'}">
-          <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">Search Category</mat-label>
+        <mat-form-field [ngStyle]="{width: '13rem', textAlign: 'center'}">
+          <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">
+            {{ 'SEARCH_OPTION.SEARCH_CATEGORY' | translate}}
+          </mat-label>
           <mat-select (valueChange)="changeCategoryFilter($event)">
-            <mat-option>All</mat-option>
-            <mat-option *ngFor="let category of categories | keyvalue" [value]="category">{{category.value}}
+            <mat-option>{{ 'PRODUCTS_ATRIBUTES.ALL' | translate }}</mat-option>
+            <mat-option *ngFor="let category of categories | keyvalue" [value]="category">
+              {{translateCategoryProducts+category.value | translate}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -42,23 +49,28 @@
                   [ngStyle]="{display: 'flex', flexDirection: 'column', justifyContent: 'space-around', height: '57%', marginLeft: '0.9rem', marginRight: '0.9rem', marginTop: '0.5rem'}">
                   <div [ngStyle]="{height: 'auto'}">
                     <h3 [ngStyle]="{margin: 0, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'}">
-                      {{product.name}}</h3>
+                      {{ product.name | translate}}
+                    </h3>
                     <div>
                       <h4 [ngStyle]="{margin: 0, marginTop: '0.6rem'}">
-                        Brand:
-                        <span [style]="{fontSize: '0.9rem'}">{{product.brand}}</span>
+                        {{ 'PRODUCTS_ATRIBUTES.BRAND' | translate}}:
+                        <span [style]="{fontSize: '0.9rem'}">{{product.brand | translate}}</span>
                       </h4>
                     </div>
                     <div>
                       <h4 [ngStyle]="{margin: 0, marginTop: '0.3rem'}">
-                        Format:
-                        <span [style]="{fontSize: '0.9rem'}">{{product.format}}</span>
+                        {{ 'PRODUCTS_ATRIBUTES.FORMAT_SIZE' | translate}}:
+                        <span [style]="{fontSize: '0.9rem'}">
+                          {{product.formatSize}}
+                        </span>
                       </h4>
                     </div>
                     <div>
                       <h4 [ngStyle]="{margin: 0, marginTop: '0.3rem'}">
-                        Price:
-                        <span [style]="{fontSize: '0.9rem'}">{{product.price}}</span>
+                        {{ 'PRODUCTS_ATRIBUTES.PRICE' | translate}}:
+                        <span [style]="{fontSize: '0.9rem'}">
+                          {{product.price}}€
+                        </span>
                       </h4>
                     </div>
                   </div>
@@ -79,7 +91,9 @@
                         (click)="addProductToTheList(product)">
                         <div
                           [ngStyle]="{cursor: 'pointer', borderRadius: '1rem', border: '#707070 1px solid', width: '12rem', height: '2.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}">
-                          <p [ngStyle]="{margin: '0 0.5rem', display: 'flex'}">Add to the list</p>
+                          <p [ngStyle]="{margin: '0 0.5rem', display: 'flex'}">
+                            {{ 'OTHERS.ADD_TO_THE_LIST'| translate}}
+                          </p>
                         </div>
                       </div>
                     </ng-template>
@@ -90,7 +104,7 @@
           </mat-grid-tile>
         </mat-grid-list>
       </div>
-      <div [ngStyle]="{marginTop: '1rem', marginBottom: '4rem', width: '100%'}">
+      <div [ngStyle]="{marginBottom: '4rem', width: '100%'}">
         <mat-paginator [ngStyle]="{backgroundColor: '#fafafa', marginRight: '5rem'}"
           [pageSizeOptions]="[10, 20, 25, 100]"></mat-paginator>
       </div>

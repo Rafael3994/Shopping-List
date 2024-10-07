@@ -2,13 +2,17 @@
 <div [style]="{ width: '99.9vw', height: '80.9vh' }">
   <div [style]="{backgoundColor: 'pink', width: '99.9vw', height: '80.9vh'}" (click)="closeAllModals()">
     <!-- Title -->
-    <h1 [style]="{ marginLeft: '3em', pointerEvents: 'none'}" [ngClass]="'lyrics'">My List</h1>
+    <h1 [style]="{ marginLeft: '3em', pointerEvents: 'none'}" [ngClass]="'lyrics'">
+      {{ 'SIDE_NAV.MY_LIST' | translate}}
+    </h1>
     <!-- Container -->
     <div [id]="'container'" [style]="{display: 'flex', flexDirection: 'column', alignItems: 'center'}">
       <!-- Searchs options -->
       <div [style]="{display: 'flex', width: '80%',  marginBottom: '1.7rem', marginTop: '1rem'}">
         <mat-form-field class="example-form-field">
-          <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">Search Product</mat-label>
+          <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">
+            {{ 'SEARCH_OPTION.SEARCH' | translate}}
+          </mat-label>
           <input matInput (keyup)="applyFilter($event)" placeholder="" #input [(ngModel)]="valueFilterText">
           <button *ngIf="valueFilterText" matSuffix mat-icon-button aria-label="Clear"
             (click)="cleanInputFilter($event)">
@@ -34,28 +38,30 @@
           <!-- Name Column -->
           <ng-container matColumnDef="name">
             <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header [style]="{fontSize: '1.2em'}">
-              Name
+              {{ 'PRODUCTS_ATRIBUTES.NAME' | translate}}
             </th>
             <td (click)="showModalProductDetails($event , row)"
               [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
-              {{row.name}}
+              {{row.name | translate}}
             </td>
           </ng-container>
 
           <!-- Category Column -->
           <ng-container matColumnDef="category">
             <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header [style]="{fontSize: '1.2em'}">
-              Category </th>
+              {{ 'PRODUCTS_ATRIBUTES.CATEGORY' | translate}}
+            </th>
             <td (click)="showModalProductDetails($event, row)"
               [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
-              {{row.category}}
+              {{ translateCategoryProducts+row.category | translate}}
             </td>
           </ng-container>
 
           <!-- Brand Column -->
           <ng-container matColumnDef="brand">
             <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header [style]="{fontSize: '1.2em'}">
-              Brand </th>
+              Brand
+            </th>
             <td (click)="showModalProductDetails($event, row)"
               [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
               {{row.brand}}
@@ -86,8 +92,7 @@
           <ng-container matColumnDef="delete">
             <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef [style]="{ fontSize: '1.2em'}"></th>
             <td mat-cell *matCellDef="let row; let index = index;" class="status">
-              <mat-icon 
-              (click)="showDeleleProductModal($event, row.isChecked, row.id)"
+              <mat-icon (click)="showDeleleProductModal($event, row.isChecked, row.id)"
                 [ngStyle]="row.isChecked ? {color: '#A2A2A2'} : {color: '#707070', cursor: 'pointer'}">
                 {{row.delete}}
               </mat-icon>
@@ -105,19 +110,19 @@
       </div>
 
       <div [ngClass]="'lyrics'" [style]="{width: '90%', display: 'flex', justifyContent: 'start', fontSize: '1rem'}">
-        <h2>Amount: {{totalAmount}}</h2>
+        <h2>Amount: {{totalAmount}}€</h2>
       </div>
     </div>
   </div>
   <!-- MODAL DELETE PRODUCT -->
-  <app-modal-delete-product [isShowModalDeleteProduct]="isShowModalDeleteProduct" 
-    (eventCloseDeleteModal)="closeDeleteProductModal()"
-    (eventDeleteProduct)="deleteProduct()"
-    ></app-modal-delete-product>
+  <app-modal-delete-product [isShowModalDeleteProduct]="isShowModalDeleteProduct"
+    (eventCloseDeleteModal)="closeDeleteProductModal()" (eventDeleteProduct)="deleteProduct()">
+  </app-modal-delete-product>
   <!-- MODAL CLEAN LIST -->
   <app-modal-clean-list [isShowModalCleanList]="isShowModalCleanList" (eventCloseCleanListModal)="closeCleanListModal()"
     (eventCleanList)="cleanList()"></app-modal-clean-list>
   <!-- MODAL PRODUCT DETAIL -->
   <app-modal-details-product [isShowModalProductDetails]="isShowModalProductDetails" [itemSelect]="itemSelect"
-    (eventCloseProductDetailsModal)="closeProductDetailsModal()" (eventSumUnit)="sumUnit()" (eventRestUnit)="restUnit()"></app-modal-details-product>
+    (eventCloseProductDetailsModal)="closeProductDetailsModal()" (eventSumUnit)="sumUnit()"
+    (eventRestUnit)="restUnit()"></app-modal-details-product>
 </div>
