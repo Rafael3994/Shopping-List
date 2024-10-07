@@ -11,7 +11,7 @@
       <div [style]="{display: 'flex', width: '80%',  marginBottom: '1.7rem', marginTop: '1rem'}">
         <mat-form-field class="example-form-field">
           <mat-label [style]="{fontSize: '1.2em'}" [ngClass]="'lyrics'">
-            {{ 'SEARCH_OPTION.SEARCH' | translate}}
+            {{ 'SEARCH_OPTION.SEARCH_PRODUCT' | translate}}
           </mat-label>
           <input matInput (keyup)="applyFilter($event)" placeholder="" #input [(ngModel)]="valueFilterText">
           <button *ngIf="valueFilterText" matSuffix mat-icon-button aria-label="Clear"
@@ -60,7 +60,7 @@
           <!-- Brand Column -->
           <ng-container matColumnDef="brand">
             <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header [style]="{fontSize: '1.2em'}">
-              Brand
+              {{ 'PRODUCTS_ATRIBUTES.BRAND' | translate}}
             </th>
             <td (click)="showModalProductDetails($event, row)"
               [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
@@ -71,17 +71,19 @@
           <!-- Price Column -->
           <ng-container matColumnDef="price">
             <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header [style]="{fontSize: '1.2em'}">
-              Price </th>
+              {{ 'PRODUCTS_ATRIBUTES.PRICE' | translate}}
+            </th>
             <td (click)="showModalProductDetails($event, row)"
               [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
-              {{row.price}}
+              {{row.price}}€
             </td>
           </ng-container>
 
           <!-- Units Column -->
           <ng-container matColumnDef="units">
             <th [ngClass]="'lyrics'" mat-header-cell *matHeaderCellDef mat-sort-header [style]="{fontSize: '1.2em'}">
-              Unit/s </th>
+              {{ 'PRODUCTS_ATRIBUTES.UNITS' | translate}}
+            </th>
             <td (click)="showModalProductDetails($event, row)"
               [ngClass]="row.isChecked ? ['lyricsGetItem', 'getItem'] : ['lyrics']" mat-cell *matCellDef="let row">
               {{row.units}}
@@ -104,13 +106,15 @@
 
           <!-- Row shown when there is no matching data. -->
           <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell lyrics" colspan="7">Without results</td>
+            <td class="mat-cell lyrics" colspan="7">
+              {{'OTHERS.WITHOUT_PRODUCTS' | translate}}
+            </td>
           </tr>
         </table>
       </div>
 
       <div [ngClass]="'lyrics'" [style]="{width: '90%', display: 'flex', justifyContent: 'start', fontSize: '1rem'}">
-        <h2>Amount: {{totalAmount}}€</h2>
+        <h2> {{'OTHERS.AMOUNT' | translate}}: {{totalAmount}}€</h2>
       </div>
     </div>
   </div>

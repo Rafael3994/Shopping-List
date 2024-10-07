@@ -1,57 +1,53 @@
 <div *ngIf="isShowModalProductDetails" [ngClass]="'product-details'">
-    <div [style]="'margin: 0 1em'">
-      <h3 [ngStyle]="{'display': 'flex', 'justifyContent': 'end'}">
-        <span [style]="{'cursor': 'pointer'}" 
-          (click)="closeCleanListModal()"
-        >X</span>
-      </h3>
-      <div [style]="{ display: 'flex', height: '19.5rem'}">
-        <div [style]="{width: '17rem'}">
-          <div
-            [style]="{marginLeft: '1rem', backgroundImage: 'url(./../../../../../../assets/img-product.jpeg)', border: '1px #707070 solid', width: '13rem', height: '13rem', borderRadius: '1rem'}">
-          </div>
-        </div>
-        <div [style]="{width: '13rem', fontWight: 'bold'}">
-          <div>
-            <h2 [style]="{marginTop: '0'}">{{itemSelect?.name}}</h2>
-          </div>
-          <div [style]="{marginTop: '1.8rem'}">
-            <h3>
-              Brand:
-              <span [style]="{fontSize: '1rem'}">{{itemSelect?.brand}}</span>
-            </h3>
-          </div>
-          <div [style]="{marginTop: '1.8rem'}">
-            <h3>
-              Format:
-              <span [style]="{fontSize: '1rem'}">{{itemSelect?.formatSize}}</span>
-            </h3>
-          </div>
-          <div [style]="{marginTop: '1.8rem'}">
-            <h3>
-              Price:
-              <span [style]="{fontSize: '1rem'}">{{itemSelect?.price}}</span>
-            </h3>
-          </div>
-          <div [style]="{marginTop: '1.8rem'}">
-            <h3>
-              Category:
-              <span [style]="{fontSize: '1rem'}">{{itemSelect?.category}}</span>
-            </h3>
-          </div>
+  <div [style]="'margin: 0 1em'" *ngIf="itemSelect">
+    <h3 [ngStyle]="{'display': 'flex', 'justifyContent': 'end'}">
+      <span [style]="{'cursor': 'pointer'}" (click)="closeCleanListModal()">X</span>
+    </h3>
+    <div [style]="{ display: 'flex', height: '19.5rem'}">
+      <div [style]="{width: '17rem'}">
+        <div
+          [style]="{marginLeft: '1rem', backgroundImage: 'url(./../../../../../../assets/img-product.jpeg)', border: '1px #707070 solid', width: '13rem', height: '13rem', borderRadius: '1rem'}">
         </div>
       </div>
-      <div [style]="{display: 'flex', justifyContent: 'center'}">
-        <div [style]="{display: 'flex', justifyContent: 'space-between'}">
-          <button 
-            (click)="sumUnit()"
-          [className]="'button-add'" [style]="{marginRight: '1.2rem'}">+</button>
-          <div [className]="'input-units'">{{itemSelect?.units}}</div>
-          <button [disabled]="itemSelect!.units! <= 1" (click)="restUnit()"
-            [ngClass]="itemSelect!.units! <= 1 ? 'button-rest-disable' : isHoverBtnRest ? 'button-rest-hover' : 'button-rest'"
-            (mouseover)="isHoverBtnRest=true" (mouseleave)="isHoverBtnRest=false"
-            [style]="{marginLeft: '1.2rem'}">-</button>
+      <div [style]="{width: '13rem', fontWight: 'bold'}">
+        <div>
+          <h2 [style]="{marginTop: '0'}">{{itemSelect.name | translate}}</h2>
+        </div>
+        <div [style]="{marginTop: '1.8rem'}">
+          <h3>
+            {{ 'PRODUCTS_ATRIBUTES.BRAND' | translate}}:
+            <span [style]="{fontSize: '1rem'}">{{itemSelect.brand | translate}}</span>
+          </h3>
+        </div>
+        <div [style]="{marginTop: '1.8rem'}">
+          <h3>
+            {{ 'PRODUCTS_ATRIBUTES.FORMAT_SIZE' | translate}}:
+            <span [style]="{fontSize: '1rem'}">{{itemSelect.formatSize}}</span>
+          </h3>
+        </div>
+        <div [style]="{marginTop: '1.8rem'}">
+          <h3>
+            {{ 'PRODUCTS_ATRIBUTES.PRICE' | translate}}:
+            <span [style]="{fontSize: '1rem'}">{{itemSelect.price}}</span>
+          </h3>
+        </div>
+        <div [style]="{marginTop: '1.8rem'}">
+          <h3>
+            {{ 'PRODUCTS_ATRIBUTES.CATEGORY' | translate}}:
+            <span [style]="{fontSize: '1rem'}">{{translateCategoryProducts+itemSelect.category | translate}}</span>
+          </h3>
         </div>
       </div>
     </div>
+    <div [style]="{display: 'flex', justifyContent: 'center'}">
+      <div [style]="{display: 'flex', justifyContent: 'space-between'}">
+        <button (click)="sumUnit()" [className]="'button-add'" [style]="{marginRight: '1.2rem'}">+</button>
+        <div [className]="'input-units'">{{itemSelect.units}}</div>
+        <button [disabled]="itemSelect!.units! <= 1" (click)="restUnit()"
+          [ngClass]="itemSelect!.units! <= 1 ? 'button-rest-disable' : isHoverBtnRest ? 'button-rest-hover' : 'button-rest'"
+          (mouseover)="isHoverBtnRest=true" (mouseleave)="isHoverBtnRest=false"
+          [style]="{marginLeft: '1.2rem'}">-</button>
+      </div>
+    </div>
   </div>
+</div>

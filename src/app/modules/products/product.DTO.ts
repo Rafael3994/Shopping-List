@@ -2,13 +2,13 @@ export interface ProductDTO {
     id?: number,
     isChecked: boolean,
     delete: string,
-    name: String,
+    name: string,
     category: Categories,
-    brand: String,
+    brand: string,
     price: number,
-    formatSize: String,
-    marked: String,
-    image: String,
+    formatSize: string,
+    marked: string,
+    image: string,
     units: number,
 };
 

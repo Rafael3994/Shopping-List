@@ -36,7 +36,8 @@
     "VEGETABLES": "Verduras y Hortalizas",
     "MEAT_FISH_AND_EGGS": "Carnes, pescados y huevos",
     "CEREALS_SUGAR_AND_SWEETS": "Patatas, legumbres, frutos secos",
-    "FATS_OIL_AND_BUTTER": "Cereales y derivados, azúcar y dulces"
+    "FATS_OIL_AND_BUTTER": "Cereales y derivados, azúcar y dulces",
+    "NATURAL_PRODUCTS": "Productos naturales"
   },
   "SEARCH_OPTION": {
     "SEARCH_PRODUCT": "Buscar Producto",
@@ -44,6 +45,12 @@
   },
   "OTHERS": {
     "ADD_TO_THE_LIST": "Añadir a la lista",
-    "ITEMS_PER_PAGE": "Productos por página"
+    "ITEMS_PER_PAGE": "Productos por página",
+    "WITHOUT_PRODUCTS": "Sin productos",
+    "AMOUNT": "Total",
+    "DELETE_PRODUCT": "¿Seguro que quieres eliminar este producto?",
+    "CLEAN_LIST": "Completaste la lista. ¿Quieres resetearla?",
+    "YES": "Sí",
+    "NO": "No"
   }
 }

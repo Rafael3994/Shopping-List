@@ -45,6 +45,12 @@
   },
   "OTHERS": {
     "ADD_TO_THE_LIST": "Add to the list",
-    "ITEMS_PER_PAGE": "Products by page"
+    "ITEMS_PER_PAGE": "Products by page",
+    "WITHOUT_PRODUCTS": "Without products",
+    "AMOUNT": "Amount",
+    "DELETE_PRODUCT": "Are you sure you want to remove this item from your list?",
+    "CLEAN_LIST": "You completed the list. Do you want to reset it?",
+    "YES": "Yes",
+    "NO": "No"
   }
 }

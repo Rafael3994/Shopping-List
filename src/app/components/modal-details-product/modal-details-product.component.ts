@@ -16,15 +16,16 @@ export class ModalDetailsProductComponent implements OnInit {
   @Output() eventCloseProductDetailsModal = new EventEmitter<void>();
   @Output() eventSumUnit = new EventEmitter<void>();
   @Output() eventRestUnit = new EventEmitter<void>();
+  translateCategoryProducts: string = 'PRODUCTS_CATEGORIES.'
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   closeCleanListModal() {
     this.eventCloseProductDetailsModal.emit();
-  }  
+  }
 
   sumUnit() {
     this.eventSumUnit.emit();
